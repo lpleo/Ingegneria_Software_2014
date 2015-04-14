@@ -1,0 +1,51 @@
+link utili:
+- http://rogerdudler.github.io/git-guide/index.it.html
+
+----- made by Sparta :) -----
+
+regola base:
+per quasi tutti i comandi è consigliato usare una pre-routine e una post-routine qui sotto visualizzate
+
+comandi pre-routine:
+git pull
+git add *
+
+comandi post-routine:
+git commit -m "commento"
+git push -u origin master
+inserire nome e pw quando richiesto
+
+
+----------- serie di comandi prescritti per facilitare il copia/incolla :) -----------
+
+per aggiornare la cartella: 
+git pull
+
+per eseguire solo aggiunte:
+git pull
+git add *
+git commit -m "commento inserimento"
+git push -u origin master
+e inserire nome e pw quando chiede
+
+per eseguire solo rimozioni:
+git pull
+git rm nomefile (-r nomecartella)
+git commit -m "commento cancellazione"
+git push -u origin master
+e inserire nome e pw quando chiede
+
+per eseguire aggiunte e rimozioni:
+git pull
+git add *
+git rm nomefile (-r nomecartella)
+git commit -m "commento modifiche"
+git push -u origin master
+e inserire nome e pw quando chiede
+
+per rinominare un file:
+git pull
+git mv nomecartella (o nomefile) nuovonome
+git commit -m "commento ridenominazione"
+git push -u origin master
+e inserire nome e pw quando chiede
