@@ -1,0 +1,22 @@
+Rivedere nomi parti
+glossario e abbreviazioni/acronimi... -->aggiungere al vision
+Scrivere un minimo di manuale per le due parti
+pdf fare per tutti i documenti e rivedere formattazione vai documenti titolo in nuova pagina se tutto il resto sotto
+
+schema logico nel caratteristiche user interface e buisness logic 
+cambiare nel disegno requisiti funzionali utilizzo app android --> ricerca soluzione 
+poi in funzioni utente al posto di ricerca soluzione-->soluzione trovata
+
+
+--DOCUMENTO SPECIFICA CASI D'USO--
+cambiare data approvato da
+fare pdf del documento
+definizioni acronimi abbreviazioni
+vedere anche sopra 
+sitemare e vedere frecce operatore+
+se elimino utente-->on cascade
+
+
+USE CASE UTENTE
+Mettere nel glossario codice problema--> specificare che si tratta del cammino già fatto 
+In manuale utente specificare che se premo pulsante non lo so vado all'ultima schermata
