@@ -16,36 +16,19 @@
    		response.setHeader("Location", site);
 	}
 	else {
-	Vector vettore = dbase.eseguiQuery("select * from utenti u where u.id_utente ="+request.getParameter("cod_utente")+";");
-	Vector vettoreStorico = dbase.eseguiQuery("SELECT u.nome, p.tipo_problema, p.tipo_barca FROM utenti u, storico s, problemi p WHERE u.id_utente = s.id_utenza AND s.id_problemi = p.id_problema AND u.id_utente ="+request.getParameter("cod_utente")+";");
+	Vector vettore = dbase.eseguiQuery("select * from problemi p where p.id_problema ="+request.getParameter("cod_problema")+";");
 	String[] record = (String[]) vettore.elementAt(0);
 %>
 	<div id="div_log">
-		<h4> Utente richiesto: </h4>
-	 	Nome: <%=record[1]%> <br />
-		Cognome: <%=record[2]%> <br />
-		Id: <%=record[0]%> <br />
-		Numero-Tel: <%=record[3]%> <br />
+		<h4> Problema richiesto: </h4>
+	 	Tipo problema: <%=record[1]%> <br />
+		Soluzione consigliata all'utente: <%=record[2]%> <br />
+		Tipo di barca: <%=record[3]%> <br />
+		Categoria problema: <%=record[4]%> <br />
+		Sottocategoria problema: <%=record[5]%> <br />
 	</div>
 	<br />
-	<h3> Storico utente </h3>
-	<br />
-
-	<%
-	for(int i=0;i<vettoreStorico.size();i++) {
-		String[] recordStorico = (String[]) vettoreStorico.elementAt(i);
-		%>
-
-	<div id="div_log">
-		<h4>Incidente passato n <%=i+1%> </h4>
-	 	Nome: <%=recordStorico[0]%> <br />
-		Tipo Barca: <%=recordStorico[2]%> <br />
-		Tipo Problema: <%=recordStorico[1]%> <br />
-	</div>
-	<br />
-
 <%
 	}
-}
 %>
 </body>
