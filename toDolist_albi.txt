@@ -20,3 +20,5 @@ se elimino utente-->on cascade
 USE CASE UTENTE
 Mettere nel glossario codice problema--> specificare che si tratta del cammino già fatto 
 In manuale utente specificare che se premo pulsante non lo so vado all'ultima schermata
+
+rivedere usecase finale
