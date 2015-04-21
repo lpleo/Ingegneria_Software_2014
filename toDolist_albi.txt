@@ -17,8 +17,12 @@ sitemare e vedere frecce operatore+
 se elimino utente-->on cascade
 
 
-USE CASE UTENTE
+USE CASE 
 Mettere nel glossario codice problema--> specificare che si tratta del cammino già fatto 
 In manuale utente specificare che se premo pulsante non lo so vado all'ultima schermata
 
+nel grafico utente mettere utilizzo app e non utilizzatore app
+eliminare gestione scenari da operatore?
 rivedere usecase finale
+
+chiedere al profe se è giusto fare pre condizioni e cosi all'uscita per ogni sotto caso di un caso
