@@ -8,7 +8,11 @@
  </head>
  <body>
  <jsp:useBean id="connetti" scope="session" class="pdtb.Database" /> 
- <h3>Database Iceberg</h3>
+ <h3>Database Iceberg Proudly Made in Sparta
+ <form name="esci" action="index.html">
+	<input id="submit" type="submit" value="Disconnetti"/>
+</form>
+</h3>
  <div style="text-align:center">
 	<%
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
@@ -33,12 +37,13 @@
 						Inserire il codice utente: <input name="cod_utente" type="text" /> <br />
 						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<br />
 						<input id="submit" type="submit" value="Ricerca Utente"/>
 					</form>
 				</div>
 				<br />
 				<div id="div_log"> 
-					<h4>Inserimento nuovo utente</h4> <br />
+					<h4>Inserimento nuovo utente</h4>
 					<form name="insUt" action="inserisci_utente.jsp">
 						<div  id="testo_sx">
 							Inserire nome utente: <input name="nome_utente" type="text" /> <br />
@@ -61,12 +66,13 @@
 						Inserire il codice problema: <input name="cod_problema" type="text" /> <br />
 						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<br />
 						<input id="submit" type="submit" value="Ricerca Problema"/>
 					</form>
 				</div>
 				<br />
 				<div id="div_log"> 
-				<h4>Inserimento Report Storico</h4> <br />
+				<h4>Inserimento Report Storico</h4> 
 					<form name="insSt" action="inserisci_storico.jsp">
 						<div  id="testo_sx">
 							Inserire codice problema: <input name="cod_problema" type="text" /> <br />
@@ -77,7 +83,7 @@
 							<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
 						</div>
 						</br>
-						<input id="submit" type="submit" value="Inserisci Utente"/>
+						<input id="submit" type="submit" value="Inserisci Storico"/>
 					</form>
 				</div>
 			</div>

@@ -1,5 +1,28 @@
+body {
+	font-family: "Arial";
+}
+
+#submit {
+  background: #0058c4;
+  background-image: -moz-linear-gradient(top, #0058c4, #2980b9);
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 0.9em;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border-style: none;
+  border-radius: 0.5em;
+}
+
+#submit:hover {
+  background: #3cb0fd;
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
 #div_log {
-	background-color: orange;
+	/*background-color: orange;*/
+background: -moz-linear-gradient(left, rgba(64,150,238,1) 0%, rgba(64,150,238,1) 100%);
 	border-radius: 1em;
 	text-align:center;
 	padding:1%;

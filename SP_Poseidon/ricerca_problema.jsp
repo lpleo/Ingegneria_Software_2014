@@ -16,19 +16,40 @@
    		response.setHeader("Location", site);
 	}
 	else {
-	Vector vettore = dbase.eseguiQuery("select * from problemi p where p.id_problema ="+request.getParameter("cod_problema")+";");
-	String[] record = (String[]) vettore.elementAt(0);
+	String query = "select * from problemi p where p.id_problema ="+request.getParameter("cod_problema")+";";
+	Vector vettore = dbase.eseguiQuery(query);
+		if(vettore.size()>0) {
+			String[] record = (String[]) vettore.elementAt(0);
 %>
-	<div id="div_log">
-		<h4> Problema richiesto: </h4>
-	 	Tipo problema: <%=record[1]%> <br />
-		Soluzione consigliata all'utente: <%=record[2]%> <br />
-		Tipo di barca: <%=record[3]%> <br />
-		Categoria problema: <%=record[4]%> <br />
-		Sottocategoria problema: <%=record[5]%> <br />
-	</div>
-	<br />
+			<div id="div_log">
+				<h4> Problema richiesto: </h4>
+			 	Tipo problema: <%=record[1]%> <br />
+				Soluzione consigliata all'utente: <%=record[2]%> <br />
+				Tipo di barca: <%=record[3]%> <br />
+				Categoria problema: <%=record[4]%> <br />
+				Sottocategoria problema: <%=record[5]%> <br />
+			</div>
+			<br />
 <%
+		}
+		else {
+%>
+			<div id="div_log">
+			<h3>Rilevato un problema</h3>
+			Query: <%=query%> <br />
+			<h4> Il problema di id <%=request.getParameter("cod_problema")%> non e' presente nel database </h4>
+			</div>
+		
+			<div id="div_log">
+				<form name="Torna" action="prima_schermata.jsp">
+					<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+					<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+					<input id="submit" type="submit" value="Torna alla Schermata principale"/>
+				</form>
+			</div>
+<%
+
+		}
 	}
 %>
 </body>

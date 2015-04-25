@@ -16,36 +16,57 @@
    		response.setHeader("Location", site);
 	}
 	else {
-	Vector vettore = dbase.eseguiQuery("select * from utenti u where u.id_utente ="+request.getParameter("cod_utente")+";");
+	String query = "select * from utenti u where u.id_utente ="+request.getParameter("cod_utente")+";";
+	Vector vettore = dbase.eseguiQuery(query);
 	Vector vettoreStorico = dbase.eseguiQuery("SELECT u.nome, p.tipo_problema, p.tipo_barca FROM utenti u, storico s, problemi p WHERE u.id_utente = s.id_utenza AND s.id_problemi = p.id_problema AND u.id_utente ="+request.getParameter("cod_utente")+";");
-	String[] record = (String[]) vettore.elementAt(0);
+	if(vettore.size()>0) {
+		String[] record = (String[]) vettore.elementAt(0);
 %>
-	<div id="div_log">
-		<h4> Utente richiesto: </h4>
-	 	Nome: <%=record[1]%> <br />
-		Cognome: <%=record[2]%> <br />
-		Id: <%=record[0]%> <br />
-		Numero-Tel: <%=record[3]%> <br />
-	</div>
-	<br />
-	<h3> Storico utente </h3>
-	<br />
+		<div id="div_log">
+			<h4> Utente richiesto: </h4>
+		 	Nome: <%=record[1]%> <br />
+			Cognome: <%=record[2]%> <br />
+			Id: <%=record[0]%> <br />
+			Numero-Tel: <%=record[3]%> <br />
+		</div>
+		<br />
+		<h3> Storico utente </h3>
+		<br />
+<%
+			for(int i=0;i<vettoreStorico.size();i++) {
+				String[] recordStorico = (String[]) vettoreStorico.elementAt(i);
+%>
 
-	<%
-	for(int i=0;i<vettoreStorico.size();i++) {
-		String[] recordStorico = (String[]) vettoreStorico.elementAt(i);
-		%>
-
-	<div id="div_log">
-		<h4>Incidente passato n <%=i+1%> </h4>
-	 	Nome: <%=recordStorico[0]%> <br />
-		Tipo Barca: <%=recordStorico[2]%> <br />
-		Tipo Problema: <%=recordStorico[1]%> <br />
-	</div>
-	<br />
+		<div id="div_log">
+			<h4>Incidente passato n <%=i+1%> </h4>
+		 	Nome: <%=recordStorico[0]%> <br />
+			Tipo Barca: <%=recordStorico[2]%> <br />
+			Tipo Problema: <%=recordStorico[1]%> <br />
+		</div>
+		<br />
 
 <%
+		
+			}
+		}
+		else {
+%>
+			<div id="div_log">
+			<h3>Rilevato un problema</h3>
+			Query: <%=query%> <br />
+			<h4> l'utente di id <%=request.getParameter("cod_utente")%> non e' presente nel database </h4>
+			</div>
+		
+			<div id="div_log">
+				<form name="Torna" action="prima_schermata.jsp">
+					<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+					<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+					<input id="submit" type="submit" value="Torna alla Schermata principale"/>
+				</form>
+			</div>
+<%
+
+		}
 	}
-}
 %>
 </body>
