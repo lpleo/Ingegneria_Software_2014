@@ -11,6 +11,7 @@
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
 	dbase.connetti();
 	if(dbase.isConnesso()==false) {
+		dbase.disconnetti();
 		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
    		response.setHeader("Location", site);
@@ -34,7 +35,7 @@
 		</div>
 
 		<div id="div_log">
-			<form name="Torna" action="prima_schermata.jsp">
+			<form name="Torna" action="prima_schermata.jsp" method="post">
 				<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 				<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
 				<input id="submit" type="submit" value="Torna alla Schermata principale"/>
@@ -50,7 +51,7 @@
 		</div>
 		
 		<div id="div_log">
-			<form name="Torna" action="prima_schermata.jsp">
+			<form name="Torna" action="prima_schermata.jsp" method="post">
 				<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 				<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
 				<input id="submit" type="submit" value="Torna alla Schermata principale"/>
@@ -59,5 +60,6 @@
 <%
 		}
 	}
+	dbase.disconnetti();
 %>
 </body>

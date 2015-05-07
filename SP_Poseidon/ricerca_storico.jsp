@@ -11,6 +11,7 @@
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
 	dbase.connetti();
 	if(dbase.isConnesso()==false) {
+		dbase.disconnetti();
 		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
    		response.setHeader("Location", site);
@@ -22,28 +23,41 @@
 	if(vettore.size()>0) {
 		String[] record = (String[]) vettore.elementAt(0);
 %>
-		<div id="div_log">
-			<h4> Utente richiesto: </h4>
+		<div id="div_log_larga">
+			<div id="testo_sx">
+				<h3> Utente richiesto </h3>
+			</div>
+		</div>
+		<div id="div_log_larga">
 		 	Nome: <%=record[1]%> <br />
 			Cognome: <%=record[2]%> <br />
 			Id: <%=record[0]%> <br />
 			Numero-Tel: <%=record[3]%> <br />
+			<br />
+			<form name="Torna" action="prima_schermata.jsp" method="post">
+				<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+				<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+				<input id="submit" type="submit" value="Torna alla Schermata principale"/>
+			</form>
 		</div>
 		<br />
-		<h3> Storico utente </h3>
-		<br />
+		<div id="div_log_larga">
+			<div id="testo_sx">
+				<h3> Storico utente </h3>
+			</div>
+		</div>
 <%
 			for(int i=0;i<vettoreStorico.size();i++) {
 				String[] recordStorico = (String[]) vettoreStorico.elementAt(i);
 %>
 
-		<div id="div_log">
+		<div id="div_log_larga">
 			<h4>Incidente passato n <%=i+1%> </h4>
 		 	Nome: <%=recordStorico[0]%> <br />
 			Tipo Barca: <%=recordStorico[2]%> <br />
 			Tipo Problema: <%=recordStorico[1]%> <br />
 		</div>
-		<br />
+
 
 <%
 		
@@ -58,7 +72,7 @@
 			</div>
 		
 			<div id="div_log">
-				<form name="Torna" action="prima_schermata.jsp">
+				<form name="Torna" action="prima_schermata.jsp" method="post">
 					<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 					<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
 					<input id="submit" type="submit" value="Torna alla Schermata principale"/>
@@ -68,5 +82,6 @@
 
 		}
 	}
+	dbase.disconnetti();
 %>
 </body>
