@@ -25,5 +25,8 @@ In manuale utente specificare che se premo pulsante non lo so vado all'ultima sc
 
 nel grafico utente mettere utilizzo app e non utilizzatore app
 
+inserire frecce inverse uml operatore 1 e metterlo nello use case
+
+
 PROGETTO SPARTA E LEO
 se elimino utente-->on cascade
