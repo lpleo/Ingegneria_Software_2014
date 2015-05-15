@@ -14,8 +14,9 @@ fare pdf del documento
 definizioni acronimi abbreviazioni
 vedere anche sopra 
 
-uml utente sistemare
-frecce indietro uml operatore web e mettere pallino dopo varie cose
+uml utente sistemare seconda freccia ricorsiva e fare due uscite
+frecce indietro uml operatore web (bo) e mettere pallino dopo varie cose -->idem admin web
+op tel comuncazione soluzione non eventuale
 
 USE CASE 
 Mettere nel glossario codice problema--> specificare che si tratta del cammino già fatto 
