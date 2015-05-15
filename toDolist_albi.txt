@@ -14,9 +14,6 @@ fare pdf del documento
 definizioni acronimi abbreviazioni
 vedere anche sopra 
 
-uml utente sistemare
-frecce indietro uml operatore web e mettere pallino dopo varie cose
-
 USE CASE 
 Mettere nel glossario codice problema--> specificare che si tratta del cammino già fatto 
 In manuale utente specificare che se premo pulsante non lo so vado all'ultima schermata
