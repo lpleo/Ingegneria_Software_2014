@@ -5,11 +5,35 @@
 	<title>Accedi</title>
  </head>
  <body>
-	<div id="div_log">
+ 
+ 	<div id="immagine">
+ 	<img src="img/iceberg.jpg"> 
+ 	</div>
+	<div id="div_login">
 		<form name="Login" action="prima_schermata.jsp" method="post">
-			Nome: <input name="username" type="text" /><br />
-			Password: <input name="password" type="password" /><br />
-		<input id="Submit" type="submit" value="Show" />
+		<div  id="testo_sx">
+		<!--<h3> Sottosistema Poseidon </h3><br />-->
+				<table>
+				<tr>
+					<td>
+					<b>Username:</b> 
+					</td>
+					<td>
+					<input name="username" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<b>Password:</b> 
+					</td>
+					<td>
+					<input name="password" type="password" />
+					</td>
+				</tr>
+				</table>
+		</div>
+			</br>
+			<input id="Submit" type="submit" value="Login" />
 		</form>
 	</div>
  </body>

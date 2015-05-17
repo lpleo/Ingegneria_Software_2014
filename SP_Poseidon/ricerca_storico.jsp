@@ -17,10 +17,10 @@
    		response.setHeader("Location", site);
 	}
 	else {
-	String query = "select * from utenti u where u.id_utente ="+request.getParameter("cod_utente")+";";
-	Vector vettore = dbase.eseguiQuery(query);
-	Vector vettoreStorico = dbase.eseguiQuery("SELECT u.nome, p.tipo_problema, p.tipo_barca FROM utenti u, storico s, problemi p WHERE u.id_utente = s.id_utenza AND s.id_problemi = p.id_problema AND u.id_utente ="+request.getParameter("cod_utente")+";");
-	if(vettore.size()>0) {
+	try {
+		String query = "select * from utenti u where u.id_utente ="+request.getParameter("cod_utente")+";";
+		Vector vettore = dbase.eseguiQuery(query);
+		Vector vettoreStorico = dbase.eseguiQuery("SELECT u.nome, p.tipo_problema, p.tipo_barca FROM utenti u, storico s, problemi p WHERE u.id_utente = s.id_utenza AND s.id_problemi = p.id_problema AND u.id_utente ="+request.getParameter("cod_utente")+";");
 		String[] record = (String[]) vettore.elementAt(0);
 %>
 		<div id="div_log_larga">
@@ -63,15 +63,14 @@
 		
 			}
 		}
-		else {
+		catch (Exception e) {
 %>
-			<div id="div_log">
+			<div id="div_log_larga">
 			<h3>Rilevato un problema</h3>
-			Query: <%=query%> <br />
 			<h4> l'utente di id <%=request.getParameter("cod_utente")%> non e' presente nel database </h4>
 			</div>
 		
-			<div id="div_log">
+			<div id="div_log_larga">
 				<form name="Torna" action="prima_schermata.jsp" method="post">
 					<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 					<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />

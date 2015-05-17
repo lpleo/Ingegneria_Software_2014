@@ -15,15 +15,15 @@ CREATE TABLE problemi(
     tipo_problema VARCHAR(127) NOT NULL,    
     soluzione VARCHAR(511),        /*dimensione temporanea*/
     tipo_barca VARCHAR(20),                 /* tolgo il NOT NULL in quanto potrebbe esserci un utente idiota che non sa il tipo di barca che ha*/
-    tipologia INTEGER default 4,	/* i valori vanno da 0 a 3+, seguendo la legenda riportata al termine del create table*/
-
+    categoria INTEGER default 4,	/* i valori vanno da 0 a 3+, seguendo la legenda riportata al termine del create table*/
+    sottocategoria INTEGER default 0,
     PRIMARY KEY(id_problema),
-    UNIQUE(tipo_problema,soluzione,tipo_barca,tipologia)	/* servirebbe ad evitare che vengano inserite due soluzioni uguali, ma non sono convinto se tenerla o meno */
+    UNIQUE(tipo_problema,soluzione,tipo_barca,categoria)	/* servirebbe ad evitare che vengano inserite due soluzioni uguali, ma non sono convinto se tenerla o meno */
 );
 
 
 
------ Legenda di problemi.tipologia -----
+/*----- Legenda di problemi.tipologia -----*/
 
 
 
@@ -42,7 +42,7 @@ CREATE TABLE problemi(
 
 
 
------ termine Legenda -----
+/*----- termine Legenda -----*/
 
 
 /* la table storico va creata per ultima */
@@ -57,8 +57,8 @@ CREATE TABLE storico(
 
 INSERT INTO utenti(id_utente,nome,cognome,numerotel,indirizzo)
 VALUES(0111,'mario','rossi','0235413','via anonima');
-INSERT INTO utenti(id_utente,nome,cognome,numerotel,indirizzo)
-VALUES(0001,'mario','rossi','0235413','via anonima');
+/*INSERT INTO utenti(id_utente,nome,cognome,numerotel,indirizzo)
+VALUES(0001,'mario','rossi','0235413','via anonima');*/
 INSERT INTO utenti(id_utente,nome,cognome,numerotel,indirizzo)
 VALUES(0077,'luca','verdi','0035413','via costa');
 INSERT INTO utenti(id_utente,nome,cognome,numerotel,indirizzo)

@@ -10,6 +10,8 @@
  <jsp:useBean id="connetti" scope="session" class="pdtb.Database" /> 
  <h3>Database Iceberg Proudly Made in Sparta
  <form name="esci" action="index.html">
+ 	<input type="hidden" name="username" value="" />
+	<input type="hidden" name="password" value="" />
 	<input id="submit" type="submit" value="Disconnetti"/>
 </form>
 </h3>
@@ -119,7 +121,7 @@
 								Inserire codice utente:
 								</td>
 								<td>
-								<input name="cod_problema" type="text" />
+								<input name="cod_utente" type="text" />
 								</td>
 							</tr>
 							<tr>
@@ -148,7 +150,7 @@
 		</div>
 		</br>
 		<div id="div_log">
-		CIAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+		Subproject Poseidon - beta 0.5 - For authorized personnel only
 		</div>
 		<%
 	dbase.disconnetti();
