@@ -14,6 +14,9 @@ fare pdf del documento
 definizioni acronimi abbreviazioni
 vedere anche sopra 
 
+blocchi "accesso tramite login" da cambiare in "Schermata inserimento credenziali"
+uml_operatore_interfacciamento -> freccia errore codice punta al primo blocco
+
 <<<<<<< HEAD
 uml utente sistemare seconda freccia ricorsiva e fare due uscite
 frecce indietro uml operatore web (bo) e mettere pallino dopo varie cose -->idem admin web
