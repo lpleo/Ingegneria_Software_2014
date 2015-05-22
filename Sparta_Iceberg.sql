@@ -38,5 +38,3 @@ CREATE TABLE storico(
 	descrizione VARCHAR(1000) default ''
 );
 
-
-/* commentare la seguente riga, in quanto serve solo a me in locale :  \i /home/accounts/studenti/id888wcc/Scrivania/Basi/300_spartani.sql */
