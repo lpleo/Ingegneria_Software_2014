@@ -89,6 +89,20 @@
 						<input id="submit" type="submit" value="Inserisci Utente"/>
 					</form>
 				</div>
+				<br />
+				
+				<div id="div_log"> 
+				<h4>Cancellazione utente</h4>
+					<form name="cancut" action="cancella_utente.jsp" method="post">
+						Inserire il codice utente: <input name="cod_utente" type="text" /> <br />
+						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<br />
+						<input id="submit" type="submit" value="Cancella Utente"/>
+						<br />
+						<h5> ATTENZIONE - le modifiche non potranno essere annullate </h5>
+					</form>
+				</div>
 			
 			</div>
 			<div id="div_log_dx">
@@ -143,14 +157,18 @@
 						<input id="submit" type="submit" value="Inserisci Storico"/>
 					</form>
 				</div>
+				</br>
+				<div id="div_log">
+				</br>
+				</br>
+				<h5>Subproject Poseidon - beta 0.5 - For authorized personnel only</h5>
+				</br>
+				</br>
+				</div>
 			</div>
 			<div id="div_fine">
 			</div>
 			
-		</div>
-		</br>
-		<div id="div_log">
-		Subproject Poseidon - beta 0.5 - For authorized personnel only
 		</div>
 		<%
 	dbase.disconnetti();

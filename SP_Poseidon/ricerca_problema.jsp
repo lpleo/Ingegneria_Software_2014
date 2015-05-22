@@ -34,12 +34,14 @@
 				Categoria problema: <%=record[4]%> <br />
 				Sottocategoria problema: <%=record[5]%> <br />
 			</div>
-			<br />
-			<form name="Torna" action="prima_schermata.jsp" method="post">
+			<div id="div_log_larga">
+				<form name="Torna" action="prima_schermata.jsp" method="post">
 				<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 				<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
 				<input id="submit" type="submit" value="Torna alla Schermata principale"/>
-			</form>
+				</form>
+			</div>
+			
 
 <%
 		}

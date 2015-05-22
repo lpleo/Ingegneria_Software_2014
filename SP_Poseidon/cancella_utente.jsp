@@ -4,7 +4,7 @@
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="stile.css" rel="stylesheet" type="text/css">	
-	<title>Ricerca e storico</title>
+	<title>Cancella utente</title>
  </head>
  <body> 
 <%
@@ -17,57 +17,57 @@
    		response.setHeader("Location", site);
 	}
 	else {
-		try {
-			String query = "select * from utenti u where u.id_utente ="+request.getParameter("cod_utente")+";";
-			Vector vettore = dbase.eseguiQuery(query);
-			Vector vettoreStorico = dbase.eseguiQuery("SELECT u.nome, p.tipo_problema, p.tipo_barca FROM utenti u, storico s, problemi p WHERE u.id_utente = s.id_utenza AND s.id_problemi = p.id_problema AND u.id_utente ="+request.getParameter("cod_utente")+";");
-			String[] record = (String[]) vettore.elementAt(0);
+		String codice = request.getParameter("cod_utente");
+		if(codice.length()==0) {
 %>
 		<div id="div_log_larga">
-			<div id="testo_sx">
-				<h3> Utente richiesto </h3>
-			</div>
+			<h3> Problema </h3>
+			<h4> Tutti i parametri di inserimento devono essere completati </h4>
+			
 		</div>
 		<div id="div_log_larga">
-		 	Nome: <%=record[1]%> <br />
-			Cognome: <%=record[2]%> <br />
-			Id: <%=record[0]%> <br />
-			Numero-Tel: <%=record[3]%> <br />
-			<br />
 			<form name="Torna" action="prima_schermata.jsp" method="post">
 				<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 				<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
 				<input id="submit" type="submit" value="Torna alla Schermata principale"/>
 			</form>
 		</div>
-		<br />
-		<div id="div_log_larga">
-			<div id="testo_sx">
-				<h3> Storico utente </h3>
-			</div>
-		</div>
 <%
-			for(int i=0;i<vettoreStorico.size();i++) {
-				String[] recordStorico = (String[]) vettoreStorico.elementAt(i);
-%>
-
-		<div id="div_log_larga">
-			<h4>Incidente passato n <%=i+1%> </h4>
-		 	Nome: <%=recordStorico[0]%> <br />
-			Tipo Barca: <%=recordStorico[2]%> <br />
-			Tipo Problema: <%=recordStorico[1]%> <br />
-		</div>
-
-
-<%
+		}
 		
-				}
-			}
-		catch (Exception e) {
+		else {
+		
+			String query = "DELETE utenti FROM utenti WHERE id_utente = "+codice+";";
+			boolean successo = dbase.eseguiAggiornamento(query);
+			if(successo) {
 %>
 			<div id="div_log_larga">
-			<h3>Rilevato un problema</h3>
-			<h4> l'utente di id <%=request.getParameter("cod_utente")%> non e' presente nel database </h4>
+				<div id="testo_sx">
+					<h3> Cancellazione riuscita dell'utente: <%=codice%> </h3>
+				</div>
+			</div>
+
+			<div id="div_log_larga">
+				<form name="Torna" action="prima_schermata.jsp" method="post">
+					<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+					<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+					<input id="submit" type="submit" value="Torna alla Schermata principale"/>
+				</form>
+			</div>
+<%			
+			}
+			else {
+			
+%>
+			<div id="div_log_larga">
+				<div id="testo_sx">
+					<h3> Errore nella cancellazione dell'utente: <%=codice%> </h3>
+				</div>
+			</div>
+
+			<div id="div_log_larga">
+				Query di errore: <%=query%> <br />
+				<%=dbase.getErrore()%> <br />
 			</div>
 		
 			<div id="div_log_larga">
@@ -78,7 +78,7 @@
 				</form>
 			</div>
 <%
-
+			}
 		}
 	}
 	dbase.disconnetti();

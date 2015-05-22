@@ -45,13 +45,18 @@ CREATE TABLE problemi(
 /*----- termine Legenda -----*/
 
 
-/* la table storico va creata per ultima */
+/*la table storico va creata per ultima */
+/*id_problemi INTEGER NOT NULL REFERENCES problemi(id_problema) ON UPDATE cascade,
+    id_utenza INTEGER REFERENCES utenti(id_utente) ON UPDATE cascade ON DELETE SET NULL,*/
 
 CREATE TABLE storico(
-    id_report INTEGER NOT NULL PRIMARY KEY,
-    id_problemi INTEGER NOT NULL REFERENCES problemi(id_problema) ON UPDATE cascade,
-    id_utenza INTEGER NOT NULL REFERENCES utenti(id_utente) ON DELETE cascade ON UPDATE cascade,
-    data_report DATE NOT NULL
+    id_report INTEGER NOT NULL,
+    id_problemi INTEGER NOT NULL,
+    id_utenza INTEGER,
+    data_report DATE NOT NULL,
+    PRIMARY KEY(id_report),
+    FOREIGN KEY(id_problemi) REFERENCES problemi(id_problema) ON UPDATE cascade,
+    FOREIGN KEY(id_utenza) REFERENCES utenti(id_utente) ON UPDATE cascade ON DELETE SET NULL
 );
 
 
@@ -103,8 +108,8 @@ VALUES(331,'Falla laterale','Trasferisci il peso dalla parte opposta','diporto',
 
 /*  N.B: quando creo uno storico, devo usare un id_utente e un id_problema esistenti, altrimenti non va*/
 
-INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(01,001,0001,'01/01/2015');
+/*INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
+VALUES(01,001,0001,'01/01/2015');*/
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(02,040,0539,'11/03/2015');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
@@ -115,8 +120,8 @@ INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(05,008,0033,'17/01/2015');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(06,061,1107,'14/02/2015');
-INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(07,331,0001,'03/01/2015');
+/*INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
+VALUES(07,331,0001,'03/01/2015');*/
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(08,230,0077,'29/03/2015');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
