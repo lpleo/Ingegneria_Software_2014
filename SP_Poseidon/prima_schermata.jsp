@@ -161,7 +161,7 @@
 				<div id="div_log">
 				</br>
 				</br>
-				<h5>Subproject Poseidon - beta 0.5 - For authorized personnel only</h5>
+				<h5>Subproject Poseidon - Version 1.0 - For authorized personnel only</h5>
 				</br>
 				</br>
 				</div>

@@ -54,6 +54,7 @@ CREATE TABLE storico(
     id_problemi INTEGER NOT NULL,
     id_utenza INTEGER,
     data_report DATE NOT NULL,
+    desc_report VARCHAR(500),
     PRIMARY KEY(id_report),
     FOREIGN KEY(id_problemi) REFERENCES problemi(id_problema) ON UPDATE cascade,
     FOREIGN KEY(id_utenza) REFERENCES utenti(id_utente) ON UPDATE cascade ON DELETE SET NULL
@@ -111,22 +112,22 @@ VALUES(331,'Falla laterale','Trasferisci il peso dalla parte opposta','diporto',
 /*INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(01,001,0001,'01/01/2015');*/
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(02,040,0539,'11/03/2015');
+VALUES(02,040,0539,'2015-3-11');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(03,175,0077,'07/02/2015');
+VALUES(03,175,0077,'2015-7-2');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(04,037,1035,'23/03/2015');
+VALUES(04,037,1035,'2015-3-23');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(05,008,0033,'17/01/2015');
+VALUES(05,008,0033,'2015-1-17');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(06,061,1107,'14/02/2015');
+VALUES(06,061,1107,'2015-2-14');
 /*INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(07,331,0001,'03/01/2015');*/
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(08,230,0077,'29/03/2015');
+VALUES(08,230,0077,'2015-3-29');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(09,040,0539,'05/03/2015');
+VALUES(09,040,0539,'2015-3-5');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
-VALUES(10,175,0466,'28/02/2015');
+VALUES(10,175,0466,'2015-2-28');
 
 

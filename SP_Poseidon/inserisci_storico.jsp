@@ -1,5 +1,8 @@
 <%@ page import="pdtb.Database" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.GregorianCalendar" %>
 <%@page import="java.util.Vector"%> 
+
  <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,10 +21,12 @@
 	}
 	else {
 		Vector vettore = dbase.eseguiQuery("SELECT MAX(id_report) FROM storico;");
+		GregorianCalendar gc = new GregorianCalendar();
+		String data = "'"+gc.get(Calendar.YEAR)+"-"+gc.get(Calendar.MONTH)+"-"+gc.get(Calendar.DATE)+"',";
 		String[] record = (String[]) vettore.elementAt(0);
 		int numero = Integer.parseInt(record[0]);
 		numero = numero+1;
-		String query = "INSERT INTO storico (id_report, id_problemi, id_utenza) VALUES ("+ numero + ",'" +request.getParameter("cod_problema") + "','" + request.getParameter("cod_utente") + "');";
+		String query = "INSERT INTO storico VALUES ("+ numero + ", " +request.getParameter("cod_problema") + " , " + request.getParameter("cod_utente") + " ," + data + " '" + request.getParameter("soluz") +"');";
 		boolean successo = dbase.eseguiAggiornamento(query);
 		if(successo) {
 %>
