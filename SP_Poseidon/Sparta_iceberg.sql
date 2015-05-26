@@ -1,9 +1,9 @@
-﻿/* spero funzioni la formattazione in quanto l'ho modificato da windows e non da linux :)  */
+﻿/*	DataBase Iceberg V 1.0	*/
 
 CREATE TABLE utenti(
     id_utente INTEGER NOT NULL,
     nome VARCHAR(20) NOT NULL,
-    cognome VARCHAR(20) NOT NULL,   /*lo metto a varchar invece che a char per testare con numeri a caso*/
+    cognome VARCHAR(20) NOT NULL,   
     numerotel VARCHAR(15) NOT NULL,
     indirizzo VARCHAR(30) NOT NULL,
     PRIMARY KEY(id_utente),
@@ -13,48 +13,36 @@ CREATE TABLE utenti(
 CREATE TABLE problemi(
     id_problema INTEGER NOT NULL,
     tipo_problema VARCHAR(127) NOT NULL,    
-    soluzione VARCHAR(511),        /*dimensione temporanea*/
-    tipo_barca VARCHAR(20),                 /* tolgo il NOT NULL in quanto potrebbe esserci un utente idiota che non sa il tipo di barca che ha*/
-    categoria INTEGER default 4,	/* i valori vanno da 0 a 3+, seguendo la legenda riportata al termine del create table*/
+    soluzione VARCHAR(1000),       
+    tipo_barca VARCHAR(20),                 
+    categoria INTEGER default 4 NOT NULL,	/* i valori vanno da 0 a 3+, seguendo la legenda riportata al termine del create table*/
     sottocategoria INTEGER default 0,
     PRIMARY KEY(id_problema),
-    UNIQUE(tipo_problema,soluzione,tipo_barca,categoria)	/* servirebbe ad evitare che vengano inserite due soluzioni uguali, ma non sono convinto se tenerla o meno */
+    UNIQUE(tipo_problema,soluzione,tipo_barca,categoria)	/* servirebbe ad evitare che vengano inserite due soluzioni uguali */
 );
 
 
 
 /*----- Legenda di problemi.tipologia -----*/
 
-
-
 /* i valori vanno da 0 a 3+ :
 
-
 0) Indica la radice dell'albero ( ci sarà solo una tupla con valore 0 )
-
 1) Indica i nodi dell'albero
-
 2) Indica le foglie che sono soluzioni dell'albero
-
-3+) Indicano tutte le tuple che non sono ancora state categorizzate 
-
-*/
-
-
+3+) Indicano tutte le tuple che non sono ancora state categorizzate 			*/
 
 /*----- termine Legenda -----*/
 
 
 /*la table storico va creata per ultima */
-/*id_problemi INTEGER NOT NULL REFERENCES problemi(id_problema) ON UPDATE cascade,
-    id_utenza INTEGER REFERENCES utenti(id_utente) ON UPDATE cascade ON DELETE SET NULL,*/
 
 CREATE TABLE storico(
     id_report INTEGER NOT NULL,
     id_problemi INTEGER NOT NULL,
     id_utenza INTEGER,
     data_report DATE NOT NULL,
-    desc_report VARCHAR(500),
+    desc_report VARCHAR(1000),
     PRIMARY KEY(id_report),
     FOREIGN KEY(id_problemi) REFERENCES problemi(id_problema) ON UPDATE cascade,
     FOREIGN KEY(id_utenza) REFERENCES utenti(id_utente) ON UPDATE cascade ON DELETE SET NULL
@@ -129,5 +117,4 @@ INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(09,040,0539,'2015-3-5');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(10,175,0466,'2015-2-28');
-
 
