@@ -36,47 +36,70 @@
 		}
 		
 		else {
-		
 			String query = "DELETE utenti FROM utenti WHERE id_utente = "+codice+";";
-			boolean successo = dbase.eseguiAggiornamento(query);
-			if(successo) {
+			String esTest = "SELECT id_utente FROM utenti WHERE id_utente="+codice+";";
+			
+			try {
+				Vector vettore = dbase.eseguiQuery(esTest);
+				boolean successo = dbase.eseguiAggiornamento(query);
+				
+			if(successo && vettore.size()>0) {
 %>
-			<div id="div_log_larga">
-				<div id="testo_sx">
-					<h3> Cancellazione riuscita dell'utente: <%=codice%> </h3>
+				<div id="div_log_larga">
+					<div id="testo_sx">
+						<h3> Cancellazione riuscita dell'utente: <%=codice%> </h3>
+					</div>
 				</div>
-			</div>
 
-			<div id="div_log_larga">
-				<form name="Torna" action="prima_schermata.jsp" method="post">
-					<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
-					<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
-					<input id="submit" type="submit" value="Torna alla Schermata principale"/>
-				</form>
-			</div>
+				<div id="div_log_larga">
+					<form name="Torna" action="prima_schermata.jsp" method="post">
+						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<input id="submit" type="submit" value="Torna alla Schermata principale"/>
+					</form>
+				</div>
 <%			
-			}
-			else {
+				}
+				else {
 			
 %>
-			<div id="div_log_larga">
-				<div id="testo_sx">
-					<h3> Errore nella cancellazione dell'utente: <%=codice%> </h3>
+				<div id="div_log_larga">
+					<div id="testo_sx">
+						<h3> Errore nella cancellazione dell'utente: <%=codice%> </h3>
+					</div>
 				</div>
-			</div>
 
-			<div id="div_log_larga">
-				Query di errore: <%=query%> <br />
-				<%=dbase.getErrore()%> <br />
-			</div>
-		
-			<div id="div_log_larga">
-				<form name="Torna" action="prima_schermata.jsp" method="post">
-					<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
-					<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
-					<input id="submit" type="submit" value="Torna alla Schermata principale"/>
-				</form>
-			</div>
+				<div id="div_log_larga">
+					Query di errore: <%=query%> <br />
+					<%=dbase.getErrore()%> <br />
+					<br />
+					<form name="Torna" action="prima_schermata.jsp" method="post">
+						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<input id="submit" type="submit" value="Torna alla Schermata principale"/>
+					</form>
+				</div>
+<%
+				}
+			}
+			catch(Exception e) {
+%>
+				<div id="div_log_larga">
+					<div id="testo_sx">
+						<h3> Errore nella cancellazione dell'utente: <%=codice%> </h3>
+					</div>
+				</div>
+
+				<div id="div_log_larga">
+					Query di errore: <%=query%> <br />
+					<%=dbase.getErrore()%> <br />
+					<br />
+					<form name="Torna" action="prima_schermata.jsp" method="post">
+						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
+						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<input id="submit" type="submit" value="Torna alla Schermata principale"/>
+					</form>
+				</div>
 <%
 			}
 		}

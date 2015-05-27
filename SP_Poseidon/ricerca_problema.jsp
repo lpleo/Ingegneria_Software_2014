@@ -34,7 +34,6 @@
 				Soluzione consigliata all'utente: <%=record[2]%> <br />
 				Tipo di barca: <%=record[3]%> <br />
 				Categoria problema: <%=record[4]%> <br />
-				Sottocategoria problema: <%=record[5]%> <br />
 				<br />
 				<form name="Torna" action="prima_schermata.jsp" method="post">
 				<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />

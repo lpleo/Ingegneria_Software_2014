@@ -1,9 +1,9 @@
-﻿/*	DataBase Iceberg V 1.0	*/
+﻿/* spero funzioni la formattazione in quanto l'ho modificato da windows e non da linux :)  */
 
 CREATE TABLE utenti(
     id_utente INTEGER NOT NULL,
     nome VARCHAR(20) NOT NULL,
-    cognome VARCHAR(20) NOT NULL,   
+    cognome VARCHAR(20) NOT NULL,   /*lo metto a varchar invece che a char per testare con numeri a caso*/
     numerotel VARCHAR(15) NOT NULL,
     indirizzo VARCHAR(30) NOT NULL,
     PRIMARY KEY(id_utente),
@@ -13,41 +13,51 @@ CREATE TABLE utenti(
 CREATE TABLE problemi(
     id_problema INTEGER NOT NULL,
     tipo_problema VARCHAR(127) NOT NULL,    
-    soluzione VARCHAR(1000),       
-    tipo_barca VARCHAR(20),                 
-    categoria INTEGER default 4 NOT NULL,	/* i valori vanno da 0 a 3+, seguendo la legenda riportata al termine del create table*/
-    sottocategoria INTEGER default 0,
+    soluzione VARCHAR(511),        /*dimensione temporanea*/
+    tipo_barca VARCHAR(20),                 /* tolgo il NOT NULL in quanto potrebbe esserci un utente idiota che non sa il tipo di barca che ha*/
+    tipologia INTEGER default 4 NOT NULL,	/* i valori vanno da 0 a 3+, seguendo la legenda riportata al termine del create table*/
     PRIMARY KEY(id_problema),
-    UNIQUE(tipo_problema,soluzione,tipo_barca,categoria)	/* servirebbe ad evitare che vengano inserite due soluzioni uguali */
+    UNIQUE(tipologia)	/* servirebbe ad evitare che vengano inserite due soluzioni uguali, ma non sono convinto se tenerla o meno */
 );
 
 
 
-/*----- Legenda di problemi.tipologia -----*/
+/*----- Legenda di problemi.tipologia -----
 
-/* i valori vanno da 0 a 3+ :
 
-0) Indica la radice dell'albero ( ci sarà solo una tupla con valore 0 )
-1) Indica i nodi dell'albero
-2) Indica le foglie che sono soluzioni dell'albero
-3+) Indicano tutte le tuple che non sono ancora state categorizzate 			*/
+	---------radix----------
+	/			\
+-------1-------		--------2--------
+/		\	/	|	\
+11		12	21	22	23
 
-/*----- termine Legenda -----*/
+	etc
+
+----- termine Legenda -----*/
 
 
 /*la table storico va creata per ultima */
+/*id_problemi INTEGER NOT NULL REFERENCES problemi(id_problema) ON UPDATE cascade,
+    id_utenza INTEGER REFERENCES utenti(id_utente) ON UPDATE cascade ON DELETE SET NULL,*/
 
 CREATE TABLE storico(
     id_report INTEGER NOT NULL,
     id_problemi INTEGER NOT NULL,
     id_utenza INTEGER,
     data_report DATE NOT NULL,
-    desc_report VARCHAR(1000),
+    desc_report VARCHAR(500),
     PRIMARY KEY(id_report),
     FOREIGN KEY(id_problemi) REFERENCES problemi(id_problema) ON UPDATE cascade,
     FOREIGN KEY(id_utenza) REFERENCES utenti(id_utente) ON UPDATE cascade ON DELETE SET NULL
 );
 
+
+CREATE TABLE credenziali (
+	id_utente_cred INTEGER NOT NULL,
+	password VARCHAR(20),
+	PRIMARY KEY(id_utente_cred),
+	FOREIGN KEY(id_utente_cred) REFERENCES utenti(id_utente) ON UPDATE cascade ON DELETE cascade
+);
 
 INSERT INTO utenti(id_utente,nome,cognome,numerotel,indirizzo)
 VALUES(0111,'mario','rossi','0235413','via anonima');
@@ -72,28 +82,18 @@ VALUES(0003,'robert','ross','333657','piazza lunga');
 INSERT INTO utenti(id_utente,nome,cognome,numerotel,indirizzo)
 VALUES(0539,'giulia','ferrari','3888615','via pieve');
 
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(111,'Primo accesso','Benvenuto!',NULL,0,0);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(001,'Primo accesso','Benvenuto!',NULL,0,0);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(174,'Guasto motore','chiave inglese n°12','diporto',1,3);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(175,'Guasto motore','chiave inglese n°15','charter',3,7);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(008,'Timone','Brugola 10','diporto',4,4);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(230,'Mal di testa','Ma dai?',NULL,0,0);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(037,'Fiamme','Estintore','charter',1,0);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(038,'Fiamme','Estintore','diporto',1,0);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(061,'Iceberg di prua!','Sai già come finirà...',NULL,0,0);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(040,'Cime annodate','Segui le immagini','diporto',7,2);
-INSERT INTO problemi(id_problema,tipo_problema,soluzione,tipo_barca,categoria,sottocategoria)
-VALUES(331,'Falla laterale','Trasferisci il peso dalla parte opposta','diporto',2,0);
+INSERT INTO problemi VALUES(111,'Primo accesso','Benvenuto!',NULL,0);
+INSERT INTO problemi VALUES(174,'Guasto motore','chiave inglese n°12','diporto',1);
+INSERT INTO problemi VALUES(175,'Guasto motore','chiave inglese n°15','charter',7);
+INSERT INTO problemi VALUES(008,'Timone','Brugola 10','diporto',4);
+INSERT INTO problemi VALUES(230,'Mal di testa','Ma dai?',NULL,5);
+INSERT INTO problemi VALUES(037,'Fiamme','Estintore','charter',2);
+INSERT INTO problemi VALUES(038,'Fiamme','Estintore','diporto',3);
+INSERT INTO problemi VALUES(061,'Iceberg di prua!','Sai già come finirà...',NULL,10);
+INSERT INTO problemi VALUES(040,'Cime annodate','Segui le immagini','diporto',21);
+INSERT INTO problemi VALUES(331,'Falla laterale','Trasferisci il peso dalla parte opposta','diporto',25);
+
+INSERT INTO credenziali VALUES(33,'123456');
 
 /*  N.B: quando creo uno storico, devo usare un id_utente e un id_problema esistenti, altrimenti non va*/
 
@@ -117,4 +117,5 @@ INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(09,040,0539,'2015-3-5');
 INSERT INTO storico(id_report,id_problemi,id_utenza,data_report)
 VALUES(10,175,0466,'2015-2-28');
+
 
