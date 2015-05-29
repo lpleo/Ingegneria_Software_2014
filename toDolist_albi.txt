@@ -7,6 +7,10 @@ pdf fare per tutti i documenti e rivedere formattazione vai documenti titolo in 
 
 poi in funzioni utente al posto di ricerca soluzione-->soluzione trovata
 
+---Caratteristiche 
+cambiare una freccia in un grafico, all'app arrivano frecce dal database non dal server
+idem altro disegno
+
 
 --DOCUMENTO SPECIFICA CASI D'USO--
 
