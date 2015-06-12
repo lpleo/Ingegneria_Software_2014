@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorPrimary">@color/primary</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="actionBarSize">@dimen/abc_action_bar_default_height_material</item>
+    </style>
+
+
+    <style name="ButtonStyle" parent="android:Widget.Button">
+        <item name="android:background">@drawable/custom_btn</item>
+    </style>
+
+    <style name="ButtonStyleFlat" parent="android:Widget.Button">
+        <item name="android:background">@drawable/custom_btn_flat</item>
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>
