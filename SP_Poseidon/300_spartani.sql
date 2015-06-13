@@ -49,20 +49,20 @@ INSERT INTO problemi VALUES(14,'Hai messo il carburante?','Fai rifornimento.','c
 INSERT INTO problemi VALUES(15,'Hai un problema allo scafo?','Controlla se ci sono problemi allo scafo',' diporto ','023');
 INSERT INTO problemi VALUES(16,'Si solleva la deriva?','Controlla che la deriva non sia già sollevata',' diporto ','024');
 INSERT INTO problemi VALUES(17,'La barca si muove?','Controlla che la barca si muova','diporto','021');
-INSERT INTO problemi VALUES(18,'La barca vira?','Controlla il timone','charter','022');
-INSERT INTO problemi VALUES(19,'Il timone è bloccato?','Controlla che il meccanismo di blocco della ruota del timone non sia inserito, se è inserito sbloccalo tirando l''apposita leva','charter','0221');
-INSERT INTO problemi VALUES(20,'Ci sono alghe sul timone?','Controlla che delle alghe attorcigliate non blocchino le pale del timone','charter','0222');
-INSERT INTO problemi VALUES(21,'Hai una falla nello scafo?','Tampona la falla utilizzando il kit di riparazione','charter','0231');
-INSERT INTO problemi VALUES(22,'E presente del fumo a bordo?','Controlla la presenza di fumo, se presente prepara un estintore ','charter','0232');
+INSERT INTO problemi VALUES(18,'La barca vira?','Controlla il timone','diporto','022');
+INSERT INTO problemi VALUES(19,'Il timone è bloccato?','Controlla che il meccanismo di blocco della ruota del timone non sia inserito, se è inserito sbloccalo tirando l''apposita leva','diporto','0221');
+INSERT INTO problemi VALUES(20,'Ci sono alghe sul timone?','Controlla che delle alghe attorcigliate non blocchino le pale del timone','diporto','0222');
+INSERT INTO problemi VALUES(21,'Hai una falla nello scafo?','Tampona la falla utilizzando il kit di riparazione','diporto','0231');
+INSERT INTO problemi VALUES(22,'E presente del fumo a bordo?','Controlla la presenza di fumo, se presente prepara un estintore ','diporto','0232');
 INSERT INTO problemi VALUES(23,'Lo scafo è pieno di incrostazioni?','Spegni il motore, ferma la barca e effettua la pulizia',' diporto ','0233');
 INSERT INTO problemi VALUES(24,'Funziona il motore di sollevamento della deriva?','Smonta il coperchio, usa la leva manuale',' diporto ','0241');
-INSERT INTO problemi VALUES(25,'Stai navigando a vela?','Controlla se stai andando a vela','charter','0211');
-INSERT INTO problemi VALUES(26,'Stai navigando a motore?','Controlla se stai andando a motore','charter','0212');
-INSERT INTO problemi VALUES(27,'Il fumo esce dal motore?','Spegni il motore e controlla le condutture dei gas di scarico','charter','02321');
-INSERT INTO problemi VALUES(28,'Il fumo proviene dalla cucina?','Spegni i fornelli e rimuovi materiale facilmente infiammabile','charter','02322');
-INSERT INTO problemi VALUES(29,'Hai issato la vela?','Issa la vela tirando l''apposita drizza','charter','02111');
-INSERT INTO problemi VALUES(30,'Il motore è acceso?','Devi accendere il motore, gira la chiave e accelera leggermente','Charter','02121');
-INSERT INTO problemi VALUES(31,'Hai messo il carburante?','Fai rifornimento.','charter','021211');
+INSERT INTO problemi VALUES(25,'Stai navigando a vela?','Controlla se stai andando a vela','diporto','0211');
+INSERT INTO problemi VALUES(26,'Stai navigando a motore?','Controlla se stai andando a motore','diporto','0212');
+INSERT INTO problemi VALUES(27,'Il fumo esce dal motore?','Spegni il motore e controlla le condutture dei gas di scarico','diporto','02321');
+INSERT INTO problemi VALUES(28,'Il fumo proviene dalla cucina?','Spegni i fornelli e rimuovi materiale facilmente infiammabile','diporto','02322');
+INSERT INTO problemi VALUES(29,'Hai issato la vela?','Issa la vela tirando l''apposita drizza','diporto','02111');
+INSERT INTO problemi VALUES(30,'Il motore è acceso?','Devi accendere il motore, gira la chiave e accelera leggermente','diporto','02121');
+INSERT INTO problemi VALUES(31,'Hai messo il carburante?','Fai rifornimento.','diporto','021211');
 INSERT INTO problemi VALUES(32,'1','1','1','0');
 INSERT INTO problemi VALUES(33,'2','2','2','01');
 INSERT INTO problemi VALUES(34,'3','3','3','02');
@@ -74,14 +74,16 @@ INSERT INTO credenziali VALUES(101,'123456');
 
 /* INSERT INTO storico(id_report,id_problemi,id_utenza,data_report,descr_report) */
 
-INSERT INTO storico VALUES(2,6,539,'2015-3-11','Nonostante l"utente abbia seguito la soluzione visualizzata, il timone rimaneva ancora bloccato; dopo aver richiesto maggiori informazioni sullo sviluppo del problema, ho ritenuto opportuno avvisare l"utente che si fosse attivato accidentalmente il dispositivo antifurto presente nella sua imbarcazione; dopo un rapido controllo, l"utente si scusa dicendo che era effettivamente l"antifurto attivato');
-INSERT INTO storico VALUES(3,38,77,'2015-7-2','L"utente ha chiamato in quanto le fiamme, avviluppatesi nei pressi dell"estintore, avevano bruciato le istruzioi d"uso; sono state perciò fornite telefonicamente, ed è stato chiesto se fosse neccessario avvisare la GC, richiesta respinta dall"utente in quanto è riuscito a domare il principio d"incendio');
-INSERT INTO storico VALUES(4,5,1035,'2015-3-23',' DA COMPILARE ');
-INSERT INTO storico VALUES(5,63,33,'2015-1-17',' DA COMPILARE ');
-INSERT INTO storico VALUES(6,78,1107,'2015-2-14',' DA COMPILARE ');
-INSERT INTO storico VALUES(8,41,77,'2015-3-29',' DA COMPILARE ');
-INSERT INTO storico VALUES(9,41,539,'2015-3-5',' DA COMPILARE ');
-INSERT INTO storico VALUES(10,5,466,'2015-2-28','L"utente rifesisce che la sua barca viaggia leggermente in diagonale; dopo aver valutato varie opzioni, è stata trovata una falla nella parte sinistra della poppa; è stata chiamanta la GC da parte dell"utente sotto nostro consiglio');
+/* per favore, GUARDATE QUESTO LINK https://it.wikipedia.org/wiki/Deriva_%28barca_a_vela%29 e ditemi che fare con il problema 16 */
+
+INSERT INTO storico VALUES(2,6,539,'2015-3-11','Nonostante l"utente abbia seguito la soluzione visualizzata, il timone rimaneva ancora bloccato; dopo aver richiesto maggiori informazioni sullo sviluppo del problema, ho ritenuto opportuno avvisare l"utente che, oltre al blocco del timone, si fosse attivato accidentalmente il dispositivo antifurto presente nella sua imbarcazione; dopo un rapido controllo, l"utente si scusa dicendo che era effettivamente l"antifurto attivato');
+INSERT INTO storico VALUES(3,22,77,'2015-7-2','L"utente ha chiamato in quanto le fiamme, avviluppatesi nei pressi dell"estintore, avevano bruciato le istruzioi d"uso; sono state perciò fornite telefonicamente, ed è stato chiesto se fosse neccessario avvisare la GC, richiesta respinta dall"utente in quanto è riuscito a domare il principio d"incendio');
+INSERT INTO storico VALUES(4,8,1035,'2015-3-23','L"utente ha chiamato in quanto il kit di riparazione era stato usato in passato, ma non è stato sostituito; di conseguenza mancavano alcuni materiali indispensabili per la riparazione. Fortunatamente, trovandosi in prosimità di un litorale, sono state fornite istruzioni su come eseguire un arenamento di fortuna; confermato il successo della missione, sono state fornite indicazioni per indicare il più vicino negozio provvisto dei materiali necessari all"utente ');
+INSERT INTO storico VALUES(5,23,33,'2015-1-17','L"utente ha chiamato in quanto non riesce a togliere da alcune zone delle colonie di molluschi occupanti un"area di c.a 300cm quadri ciacuno; è stato consigliato di rivolgersi presso uno specialista, di cui abbiamo fornito il numero');
+INSERT INTO storico VALUES(6,11,1107,'2015-2-14','Avvisati del fatto che il fumo si propagava dai fornelli, ma quest"utimi non erano stati accesi, ho ipotizzato che potesse trattarsi di un malfunzionamento elettrico situato nella zona posteriore dei fornelli. Per prima cosa ho consigliato di chiudere gas ed elettricità per sicurezza e, una volta fatto, ho aiutato l"utente ad individuare il pannello di accesso; una volta aperto, mi è stata notificata una fuoriuscita di fumo notevole e, una volta diradatosi, l"utente ha confermato di aver individuato la causa del fumo in due cavi scoperti che stavano facendo contatto, bruciando così la schiuma poliuretanica');
+INSERT INTO storico VALUES(8,13,77,'2015-3-29','L"utente ha chiamato in quanto la chiave risulta bloccata, impossibilitando l"accensione del motore; trovandosi in mare aperto, ho ritenuto opportuno aiutare l"utente nel smontare il blocco chiave e lubrificarlo completamente. Una volta riposizionato, funzionava normalmente');
+INSERT INTO storico VALUES(9,29,539,'2015-3-5','L"utente ha chiamato in quanto, presa a nolo un imbarcazione ibrida, ha scoperto dopo c.a 20 min di navigazione a motore che nel vano della vela, quest"ultima non c"è; inoltre, l"utente sostiene di non aver abbastanza carburante per riuscire a tornare indietro. Dopo aver chiamato l"ufficio della ditta di noleggio, è partita un"imbarcazione di suddetta per assistere il loro cliente');
+INSERT INTO storico VALUES(10,2,466,'2015-2-28','L"utente rifesisce che la sua barca viaggia in diagonale e risulta impossibile virare, nonostante il timone funzioni correttamente; dopo aver valutato varie opzioni, è stata trovata una falla alquanto estesa nella parte sinistra della poppa; è stata chiamanta la GC da parte dell"utente sotto nostro consiglio');
 
 
 /* test */
