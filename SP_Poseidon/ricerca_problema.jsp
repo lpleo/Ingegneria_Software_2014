@@ -30,8 +30,8 @@
 			</div>
 			</div>
 			<div id="div_log_larga">
-			 	Tipo problema: <%=record[1]%> <br />
-				Soluzione consigliata all'utente: <%=record[2]%> <br />
+			 	Tipo problema: <%=record[1]%> <br /><br />
+				<b>Soluzione consigliata all'utente:</b><br /> <%=record[2]%> <br /><br/>
 				Tipo di barca: <%=record[3]%> <br />
 				Categoria problema: <%=record[4]%> <br />
 				<br />
