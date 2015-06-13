@@ -13,7 +13,7 @@ CREATE TABLE problemi(
     tipo_problema VARCHAR(127) NOT NULL,    
     soluzione VARCHAR(1000),
     tipo_barca VARCHAR(20),
-    tipologia INTEGER,	/* ho tolto il 'default 4' e il 'NOT NULL' in quanto il primo caso non aveva senso con lo schema sotto illustrato, mentre il secondo caso è temporaneo e da discutere insieme*/
+    tipologia VARCHAR(10),	/* ho tolto il 'default 4' e il 'NOT NULL' in quanto il primo caso non aveva senso con lo schema sotto illustrato, mentre il secondo caso è temporaneo e da discutere insieme*/
     PRIMARY KEY(id_problema),
     UNIQUE(tipologia)	/* serve ad evitare che vengano inserite due soluzioni uguali */
 );
