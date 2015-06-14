@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">TitanicAssistence</string>
+
+    <string name="hello_world">Selezionare il tipo di barca</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- MainActivity-->
+    <string name="ship1">Charter</string>
+    <string name="ship2">Diporto</string>
+    <string name="callOffice">Chiama l\'assistenza</string>
+    <string name="phoneNumber">3474958268</string>
+
+    <!--LoginActivity-->
+    <string name="usernameHint">Username</string>
+    <string name="passwordHint">Password</string>
+    <string name="loginBT">Login</string>
+
+    <!--QuestionActivity-->
+    <string name="back">Torna ai problemi precedenti</string>
+    <string name="solution">Ottieni una soluzione</string>
+
+
+    <string name="home">Torna alla schermata principale</string>
+
+    <!-- Error -->
+    <string name="splashDBErrorMessage">Errore. Riscarica l\'applicazione</string>
+    <string name="splashDBErrorClose">Chiudi</string>
+
+    <!-- Menu -->
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
+    <string name="aboutAlert">About</string>
+    <string name="messageAlert">Questa applicazione appartiene a:\n\nFederico Parezzan\nLeonardo Piccoli\nAlberto Benini\nPaoloVucinic</string>
+    
+    
+    <string name="preference_file_key">TOKEN</string>
+    <string name="logged">ISLOGGED</string>
+    <string name="noPref">No preferences!</string>
+
+</resources>

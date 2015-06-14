@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="primary" type="color">#FF9800</item>
+    <item name="primary_dark" type="color">#F57C00</item>
+    <item name="accent" type="color">#4CAF50</item>
+
+    <item name="primary_text" type="color">#212121</item>
+    <item name="secondary_text" type="color">#727272</item>
+    <item name="divider_color" type="color">#B6B6B6</item>
+    <color name="white">#FAFAFA</color>
+
+
+    <color name="btn_pressed">#D32F2F</color>
+    <color name="btn_pressed_flat">#33D32F2F</color>
+    <color name="btn_focused">#F44336</color>
+    <color name="btn_normal">#F44336</color>
+
+    <color name="btn_pressed2">#FFEB3B</color>
+    <color name="btn_normal2">#FFF9C4</color>
+
+
+</resources>
