@@ -12,6 +12,8 @@ cambiare una freccia in un grafico, all'app arrivano frecce dal database non dal
 idem altro disegno
 in interfaccie esterne vedere se e cosa mettere all'app android, attualmente ha scritto il json che non viene usato
 
+--VISION
+in ultima immagine togliere collegamento tra cel e internet
 
 --DOCUMENTO SPECIFICA CASI D'USO--
 
@@ -23,15 +25,9 @@ vedere anche sopra
 =======
 >>>>>>> 7226ae3b4966de41591cc02c7afd94d7a9681908
 USE CASE 
-Mettere nel glossario codice problema--> specificare che si tratta del cammino già fatto 
+
 In manuale utente specificare che se premo pulsante non lo so vado all'ultima schermata
 
-nel grafico utente mettere utilizzo app e non utilizzatore app
-
-inserire frecce inverse uml operatore 1 e metterlo nello use case
-
---PROJECT PLAN
-Prima immagine tagliata-->sistemare
 
 
 PROGETTO SPARTA E LEO
