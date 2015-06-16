@@ -21,12 +21,19 @@
 	}
 	else {
 		Vector vettore = dbase.eseguiQuery("SELECT MAX(id_report) FROM storico;");
+		Vector idProblema = dbase.eseguiQuery("SELECT id_problema FROM problemi WHERE tipologia='"+request.getParameter("cod_problema")+"';");
 		GregorianCalendar gc = new GregorianCalendar();
 		String data = "'"+gc.get(Calendar.YEAR)+"-"+gc.get(Calendar.MONTH)+"-"+gc.get(Calendar.DATE)+"',";
 		String[] record = (String[]) vettore.elementAt(0);
 		int numero = Integer.parseInt(record[0]);
 		numero = numero+1;
-		String query = "INSERT INTO storico VALUES ("+ numero + ", " +request.getParameter("cod_problema") + " , " + request.getParameter("cod_utente") + " ," + data + " '" + request.getParameter("soluz") +"');";
+		String idProb="";
+		if(idProblema.size() > 0) {
+			record = (String[]) idProblema.elementAt(0);
+			idProb = record[0];
+		}
+		
+		String query = "INSERT INTO storico VALUES ("+ numero + ", " + idProb + " , " + request.getParameter("cod_utente") + " ," + data + " '" + request.getParameter("soluz") +"');";
 		boolean successo = dbase.eseguiAggiornamento(query);
 		if(successo) {
 %>

@@ -18,8 +18,8 @@
 	}
 	else {
 		try {
-			String query = "select * from problemi p where p.id_problema ="+request.getParameter("cod_problema")+";";
-			String queryStorico = "select * from storico where id_problemi =" + request.getParameter("cod_problema")+";";
+			String query = "select * from problemi p where p.tipologia ='"+request.getParameter("cod_problema")+"';";
+			String queryStorico = "select p.id_problema, p.tipologia, s.id_utenza, s.data_report, s.desc_report from problemi p, storico s where p.tipologia ='" + request.getParameter("cod_problema")+"' and s.id_problemi = p.id_problema;";
 			Vector vettore = dbase.eseguiQuery(query);
 			Vector vettoreStorico = dbase.eseguiQuery(queryStorico);
 			String[] record = (String[]) vettore.elementAt(0);
@@ -30,6 +30,7 @@
 			</div>
 			</div>
 			<div id="div_log_larga">
+				<b>id: <%=record[0]%></b> <bt /> <br />
 			 	Tipo problema: <%=record[1]%> <br /><br />
 				<b>Soluzione consigliata all'utente:</b><br /> <%=record[2]%> <br /><br/>
 				Tipo di barca: <%=record[3]%> <br />
