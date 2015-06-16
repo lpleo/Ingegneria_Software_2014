@@ -1,6 +1,9 @@
 package com.federicoparezzan.titanicassistence.Tree;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.federicoparezzan.titanicassistence.R;
 
 import java.util.ArrayList;
 
@@ -51,6 +54,14 @@ public class History {
             }
             cont ++;
         }
+        return  code;
+    }
+
+    public String createLastCodeWithUserId(Context context){
+        String code = new String();
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String username = sharedPref.getString(context.getString(R.string.username), "no username");
+        code = username + "-" + arrayList.get(arrayList.size() - 1).getCode().getTipologia();
         return  code;
     }
 

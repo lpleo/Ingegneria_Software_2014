@@ -93,6 +93,7 @@ public class LoginActivity  extends AppCompatActivity {
                 sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putBoolean(getString(R.string.logged), true);
+                editor.putString(getString(R.string.username),usernameET.getText().toString() );
                 editor.commit();
 
                 return true;

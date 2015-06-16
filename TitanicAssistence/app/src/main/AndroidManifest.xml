@@ -20,13 +20,16 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name=".Util.MyAppSubclass"
+
         >
         <activity
             android:name=".Activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".Activity.SplashActivity" >
+        <activity android:name=".Activity.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,13 +37,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.LoginActivity"/>
+        <activity android:name=".Activity.LoginActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Activity.QuestionActivity"/>
+        <activity android:name=".Activity.QuestionActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Activity.SolutionActivity"/>
+        <activity android:name=".Activity.SolutionActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Activity.ProblemNotSolved"/>
+        <activity android:name=".Activity.ProblemNotSolved"
+            android:screenOrientation="portrait"/>
 
     </application>
 
