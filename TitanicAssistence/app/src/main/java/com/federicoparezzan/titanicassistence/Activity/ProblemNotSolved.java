@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.federicoparezzan.titanicassistence.R;
 import com.federicoparezzan.titanicassistence.Tree.History;
+import com.github.clans.fab.FloatingActionButton;
 
 /**
  * Created by federicoparezzan on 14/06/15.
@@ -44,13 +45,13 @@ public class ProblemNotSolved extends AppCompatActivity {
 
 
         final History history = History.getInstance();
-        String code = history.createCode();
+        String code = history.createLastCodeWithUserId(context);
 
         TextView codeTV = (TextView) findViewById(R.id.code);
         codeTV.setText(code);
 
 
-        Button callOffice = (Button) findViewById(R.id.callOffice);
+        FloatingActionButton callOffice = (FloatingActionButton) findViewById(R.id.menu_item_assistance);
 
         callOffice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +61,7 @@ public class ProblemNotSolved extends AppCompatActivity {
             }
         });
 
-        Button homeBT = (Button) findViewById(R.id.home);
+        FloatingActionButton homeBT = (FloatingActionButton) findViewById(R.id.menu_item_home);
         homeBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +95,7 @@ public class ProblemNotSolved extends AppCompatActivity {
 
             Intent intent = new Intent(ProblemNotSolved.this.getApplicationContext(), LoginActivity.class);
             startActivity(intent);
+            finish();
 
             return true;
         } else if (id == R.id.about) {

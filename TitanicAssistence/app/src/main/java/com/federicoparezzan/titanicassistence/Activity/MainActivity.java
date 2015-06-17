@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.federicoparezzan.titanicassistence.R;
 import com.federicoparezzan.titanicassistence.Tree.History;
 import com.federicoparezzan.titanicassistence.Tree.Node;
 import com.federicoparezzan.titanicassistence.Tree.Tree;
+import com.github.clans.fab.FloatingActionButton;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button buttonCharter = (Button) findViewById(R.id.buttonCharter);
         Button buttonDiporto = (Button) findViewById(R.id.buttonDiporto);
-        Button callOffice = (Button) findViewById(R.id.callOffice);
+        FloatingActionButton callOffice = (FloatingActionButton) findViewById(R.id.callOffice);
 
         callOffice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(MainActivity.this.getApplicationContext(), LoginActivity.class);
             startActivity(intent);
+            finish();
 
             return true;
         } else if (id == R.id.about) {
@@ -142,4 +145,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

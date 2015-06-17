@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TitanicAssistence</string>
+    <string name="app_name">TitanicAssistance</string>
 
     <string name="hello_world">Selezionare il tipo di barca</string>
     <string name="action_settings">Settings</string>
@@ -30,11 +30,12 @@
     <string name="logout">Logout</string>
     <string name="about">About</string>
     <string name="aboutAlert">About</string>
-    <string name="messageAlert">Questa applicazione appartiene a:\n\nFederico Parezzan\nLeonardo Piccoli\nAlberto Benini\nPaoloVucinic</string>
-    
+    <string name="messageAlert">Questa applicazione appartiene a:\n\nFederico Parezzan\nLeonardo Piccoli\nAlberto Benini\nPaolo Vucinic</string>
+
     
     <string name="preference_file_key">TOKEN</string>
     <string name="logged">ISLOGGED</string>
+    <string name="username">USERNAME</string>
     <string name="noPref">No preferences!</string>
 
 </resources>

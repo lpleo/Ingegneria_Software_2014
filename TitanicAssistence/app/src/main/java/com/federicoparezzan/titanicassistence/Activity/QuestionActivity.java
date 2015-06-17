@@ -19,6 +19,7 @@ import com.federicoparezzan.titanicassistence.Tree.History;
 import com.federicoparezzan.titanicassistence.Tree.Node;
 import com.federicoparezzan.titanicassistence.R;
 import com.federicoparezzan.titanicassistence.Util.MyAppSubclass;
+import com.github.clans.fab.FloatingActionButton;
 
 /**
  * Created by federicoparezzan on 29/05/15.
@@ -46,8 +47,8 @@ public class QuestionActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         LinearLayout layoutQuestion = (LinearLayout) findViewById(R.id.layoutQuestion);
-        Button solutionBT = (Button) findViewById(R.id.solution);
-        Button callOfficeBT = (Button) findViewById(R.id.callOffice);
+        FloatingActionButton callOfficeBT = (FloatingActionButton) findViewById(R.id.menu_item_assistance);
+        FloatingActionButton home = (FloatingActionButton) findViewById(R.id.menu_item_home);
 
         originator = Originator.getInstance();
         leaf = originator.getOriginatorState();
@@ -95,22 +96,25 @@ public class QuestionActivity extends AppCompatActivity {
             cont++;
         }
 
-        //creo la schermata con la soluzione basandomi sullo stato salvato nel Memento
-        solutionBT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(QuestionActivity.this.getApplicationContext(), SolutionActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
         callOfficeBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(QuestionActivity.this.getApplicationContext(), ProblemNotSolved.class);
+                startActivity(intent);
+
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                History history =History.getInstance();
+                history.removeAllNode();
+
+                Intent intent = new Intent(QuestionActivity.this.getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
             }
@@ -152,6 +156,7 @@ public class QuestionActivity extends AppCompatActivity {
 
             Intent intent = new Intent(QuestionActivity.this.getApplicationContext(), LoginActivity.class);
             startActivity(intent);
+            finish();
 
             return true;
         } else if (id == R.id.about) {

@@ -65,6 +65,7 @@ public class SplashActivity extends Activity {
                 } else {
                     Intent intent = new Intent(SplashActivity.this.getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

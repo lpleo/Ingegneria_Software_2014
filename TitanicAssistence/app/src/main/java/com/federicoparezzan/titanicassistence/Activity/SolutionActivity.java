@@ -19,6 +19,7 @@ import com.federicoparezzan.titanicassistence.Memento.Originator;
 import com.federicoparezzan.titanicassistence.R;
 import com.federicoparezzan.titanicassistence.Tree.History;
 import com.federicoparezzan.titanicassistence.Tree.Node;
+import com.github.clans.fab.FloatingActionButton;
 
 /**
  * Created by federicoparezzan on 12/06/15.
@@ -52,7 +53,7 @@ public class SolutionActivity extends AppCompatActivity {
 
         solution.setText(node.getCode().getSoluzione());
 
-        Button homeBT = (Button) findViewById(R.id.home);
+        FloatingActionButton homeBT = (FloatingActionButton) findViewById(R.id.menu_item_home);
         homeBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,19 +62,21 @@ public class SolutionActivity extends AppCompatActivity {
                 history.removeAllNode();
 
                 Intent intent = new Intent(SolutionActivity.this.getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
 
 
 
-        Button callOfficeBT = (Button) findViewById(R.id.callOffice);
+        FloatingActionButton callOfficeBT = (FloatingActionButton) findViewById(R.id.menu_item_assistance);
         callOfficeBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(SolutionActivity.this.getApplicationContext(), ProblemNotSolved.class);
                 startActivity(intent);
+
 
             }
         });
@@ -114,6 +117,7 @@ public class SolutionActivity extends AppCompatActivity {
 
             Intent intent = new Intent(SolutionActivity.this.getApplicationContext(), LoginActivity.class);
             startActivity(intent);
+            finish();
 
             return true;
         } else if (id == R.id.about) {
