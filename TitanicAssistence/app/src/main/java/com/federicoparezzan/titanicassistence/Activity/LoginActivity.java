@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.federicoparezzan.titanicassistence.Bean.CredentialBean;
 import com.federicoparezzan.titanicassistence.Persistence.CredentialPersistence;
@@ -84,6 +85,10 @@ public class LoginActivity  extends AppCompatActivity {
      */
     private boolean checkCorrectCredential(){
         if (usernameET.getText().length() == 0 || passwordET.getText().length() == 0){
+            CharSequence text = "Inserisci le credenziali";
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+            toast.show();
+
             return false;
         }
         try {
@@ -99,11 +104,18 @@ public class LoginActivity  extends AppCompatActivity {
                 return true;
             }
         } catch (Exception e){
+            CharSequence text = "Credenziali errate";
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+            toast.show();
+
             if (Utils.USE_DEBUG) {
                 Log.e(TAG, "checkCorrectCredential(): exception raised on incorrect credential " + e);
             }
             return false;
         }
+        CharSequence text = "Credenziali errate";
+        Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+        toast.show();
         return false;
     }
 
