@@ -1,4 +1,5 @@
 <%@ page import="pdtb.Database" %>
+<%@ page import="pdtb.Connessioni" %>
 <%@page import="java.util.Vector"%> 
  <html>
  <head>
@@ -8,9 +9,11 @@
  </head>
  <body> 
 <%
+	Connessioni conAttive = Connessioni.getInstance();
+	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
 	dbase.connetti();
-	if(dbase.isConnesso()==false) {
+	if(dbase.isConnesso()==false||esiste==false) {
 		dbase.disconnetti();
 		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -66,13 +69,11 @@
 				<div id="div_log_larga">
 					<div id="testo_sx">
 						<h3> Errore nella cancellazione dell'utente: <%=codice%> </h3>
+						<h4> L'utente non &#232 riconosciuto dal sistema </h4>
 					</div>
+					</ br>
 				</div>
-
 				<div id="div_log_larga">
-					Query di errore: <%=query%> <br />
-					<%=dbase.getErrore()%> <br />
-					<br />
 					<form name="Torna" action="prima_schermata.jsp" method="post">
 						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
@@ -87,13 +88,11 @@
 				<div id="div_log_larga">
 					<div id="testo_sx">
 						<h3> Errore nella cancellazione dell'utente: <%=codice%> </h3>
+						<h4> L'utente non &#232 riconosciuto dal sistema </h4>
 					</div>
+					</ br>
 				</div>
-
 				<div id="div_log_larga">
-					Query di errore: <%=query%> <br />
-					<%=dbase.getErrore()%> <br />
-					<br />
 					<form name="Torna" action="prima_schermata.jsp" method="post">
 						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
 						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />

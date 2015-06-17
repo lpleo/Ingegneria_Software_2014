@@ -1,5 +1,6 @@
 <%@ page import="pdtb.Database" %>
-<%@page import="java.util.Vector"%> 
+<%@page import="java.util.Vector"%>
+<%@ page import="pdtb.Connessioni" %>
  <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,9 +9,11 @@
  </head>
  <body> 
 <%
+	Connessioni conAttive = Connessioni.getInstance();
+	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
 	dbase.connetti();
-	if(dbase.isConnesso()==false) {
+	if(dbase.isConnesso()==false||esiste==false) {
 		dbase.disconnetti();
 		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -67,7 +70,7 @@
 %>
 			<div id="div_log_larga">
 			<h3>Rilevato un problema</h3>
-			<h4> l'utente di id <%=request.getParameter("cod_utente")%> non e' presente nel database </h4>
+			<h4> l'utente di id <%=request.getParameter("cod_utente")%> non &#232 presente nel sistema </h4>
 			</div>
 		
 			<div id="div_log_larga">

@@ -1,5 +1,6 @@
 <%@ page import="pdtb.Database" %>
-<%@page import="java.util.Vector"%> 
+<%@page import="java.util.Vector"%>
+<%@ page import="pdtb.Connessioni" %>
  <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,9 +9,11 @@
  </head>
  <body> 
 <%
+	Connessioni conAttive = Connessioni.getInstance();
+	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
 	dbase.connetti();
-	if(dbase.isConnesso()==false) {
+	if(dbase.isConnesso()==false||esiste==false) {
 		dbase.disconnetti();
 		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -18,8 +21,8 @@
 	}
 	else {
 		try {
-			String query = "select * from problemi p where p.id_problema ="+request.getParameter("cod_problema")+";";
-			String queryStorico = "select * from storico where id_problemi =" + request.getParameter("cod_problema")+";";
+			String query = "select * from problemi p where p.tipologia ='"+request.getParameter("cod_problema")+"';";
+			String queryStorico = "select p.id_problema, p.tipologia, s.id_utenza, s.data_report, s.desc_report from problemi p, storico s where p.tipologia ='" + request.getParameter("cod_problema")+"' and s.id_problemi = p.id_problema;";
 			Vector vettore = dbase.eseguiQuery(query);
 			Vector vettoreStorico = dbase.eseguiQuery(queryStorico);
 			String[] record = (String[]) vettore.elementAt(0);
@@ -30,6 +33,7 @@
 			</div>
 			</div>
 			<div id="div_log_larga">
+				<b>id: <%=record[0]%></b> <bt /> <br />
 			 	Tipo problema: <%=record[1]%> <br /><br />
 				<b>Soluzione consigliata all'utente:</b><br /> <%=record[2]%> <br /><br/>
 				Tipo di barca: <%=record[3]%> <br />
@@ -69,7 +73,7 @@
 			<div id="div_log_larga">
 			<h3>Rilevato un problema</h3>
 			<!--Query: <=query> <br />-->
-			<h4> Il problema di id <%=request.getParameter("cod_problema")%> non e' presente nel database </h4>
+			<h4> Il problema di id <%=request.getParameter("cod_problema")%> non &#232 presente nel sistema </h4>
 			</div>
 		
 			<div id="div_log_larga">

@@ -1,5 +1,6 @@
 <%@ page import="pdtb.Database" %>
-<%@page import="java.util.Vector"%> 
+<%@page import="java.util.Vector"%>
+<%@ page import="pdtb.Connessioni" %>
  <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,9 +9,11 @@
  </head>
  <body> 
 <%
+	Connessioni conAttive = Connessioni.getInstance();
+	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
 	dbase.connetti();
-	if(dbase.isConnesso()==false) {
+	if(dbase.isConnesso()==false||esiste==false) {
 		dbase.disconnetti();
 		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -87,10 +90,6 @@
 			Cognome: <%=cognome%> <br />
 			Via: <%=indirizzo%> <br />
 			Numero Telefono: <%=telefono%> <br />
-			</div>
-			<div id="div_log_larga">
-				Query di errore: <%=query%> <br />
-				<%=dbase.getErrore()%> <br />
 			</div>
 		
 			<div id="div_log_larga">

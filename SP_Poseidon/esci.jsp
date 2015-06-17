@@ -7,15 +7,13 @@
  <body>
 
  	<div id="div_log_larga">
-		<h1>Accesso...</h1> <br />
+		<h1>Uscita...</h1> <br />
 	</div>
 	<%
  		Connessioni conAttive = Connessioni.getInstance();
- 		conAttive.aggiungiConnessione(request.getParameter("username"));
- 		String site = "prima_schermata.jsp";
+ 		conAttive.rimuoviConnessione(request.getParameter("username"));
+ 		String site = "index.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
-		session.setAttribute("username",request.getParameter("username"));
-		session.setAttribute("password",request.getParameter("password"));
    		response.setHeader("Location", site);	
  	%>
  </body>

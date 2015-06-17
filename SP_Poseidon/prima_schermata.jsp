@@ -1,4 +1,5 @@
 <%@ page import="pdtb.Database" %>
+<%@ page import="pdtb.Connessioni" %>
 <%@page import="java.util.Vector"%> 
  <html>
  <head>
@@ -8,19 +9,28 @@
  </head>
  <body>
  <jsp:useBean id="connetti" scope="session" class="pdtb.Database" /> 
- <h3>Database Iceberg Proudly Made in Sparta
- <form name="esci" action="index.html">
- 	<input type="hidden" name="username" value="" />
-	<input type="hidden" name="password" value="" />
-	<input id="submit" type="submit" value="Disconnetti"/>
-</form>
-</h3>
- <div style="text-align:center">
-	<%
-	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
+ 
+ <%
+	String username = (String) session.getAttribute("username");
+	String password = (String) session.getAttribute("password");
+	if(username == null || username.length() == 0) {
+		username = request.getParameter("username");
+		password = request.getParameter("password");
+	}
+	Connessioni conAttive = Connessioni.getInstance();
+	boolean esiste = conAttive.esisteConnessione(username);
+	Database dbase = new Database("iceberg",username,password);
 	dbase.connetti();
 	request.setAttribute("dblog",dbase);
-	if(dbase.isConnesso()==false) {
+	%>
+ 
+ <form name="esci" action="esci.jsp" method="post">
+ 	<input type="hidden" name="username" value=<%=username%> />
+	<input id="submit" type="submit" value="Disconnetti"/>
+ </form>
+ <div style="text-align:center">
+	<%
+	if(dbase.isConnesso()==false || esiste==false) {
 		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", site);
@@ -28,7 +38,7 @@
 	else {
 	%>
 	
-		<h2>Connessione al database riuscita.<br />
+		<h2>Connessione al sistema riuscita.<br />
 		Cosa si desidera fare? <br /></h2>
  </div>
 		<div id="contenitore">
@@ -37,10 +47,11 @@
 				<h4>Ricerca utente e storico</h4>
 					<form name="ricerut" action="ricerca_storico.jsp" method="post">
 						Inserire il codice utente: <input name="cod_utente" type="text" /> <br />
-						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
-						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<input type="hidden" name="username" value="<%=username%>" />
+						<input type="hidden" name="password" value="<%=password%>" />
 						<br />
 						<input id="submit" type="submit" value="Ricerca Utente"/>
+						<br />
 					</form>
 				</div>
 				<br />
@@ -82,8 +93,8 @@
 								</td>
 							</tr>
 							</table>
-							<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
-							<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+							<input type="hidden" name="username" value="<%=username%>" />
+							<input type="hidden" name="password" value="<%=password%>" />
 						</div>
 						</br>
 						<input id="submit" type="submit" value="Inserisci Utente"/>
@@ -95,8 +106,8 @@
 				<h4>Cancellazione utente</h4>
 					<form name="cancut" action="cancella_utente.jsp" method="post">
 						Inserire il codice utente: <input name="cod_utente" type="text" /> <br />
-						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
-						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<input type="hidden" name="username" value="<%=username%>" />
+						<input type="hidden" name="password" value="<%=password%>" />
 						<br />
 						<input id="submit" type="submit" value="Cancella Utente"/>
 						<br />
@@ -110,8 +121,8 @@
 				<h4>Ricerca problemi</h4>
 					<form name="ricerpb" action="ricerca_problema.jsp" method="post">
 						Inserire il codice problema: <input name="cod_problema" type="text" /> <br />
-						<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
-						<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+						<input type="hidden" name="username" value="<%=username%>" />
+						<input type="hidden" name="password" value="<%=password%>" />
 						<br />
 						<input id="submit" type="submit" value="Ricerca Problema"/>
 					</form>
@@ -150,8 +161,8 @@
 								</td>
 							</tr>
 							</table>
-							<input type="hidden" name="username" value="<%=request.getParameter("username")%>" />
-							<input type="hidden" name="password" value="<%=request.getParameter("password")%>" />
+							<input type="hidden" name="username" value="<%=username%>" />
+							<input type="hidden" name="password" value="<%=password%>" />
 						</div>
 						</br>
 						<input id="submit" type="submit" value="Inserisci Storico"/>
@@ -161,7 +172,7 @@
 				<div id="div_log">
 				</br>
 				</br>
-				<h5>Subproject Poseidon - Version 1.0 - For authorized personnel only</h5>
+				<h5>Subproject NeptuneRescue - Version 1.2 - For authorized personnel only</h5>
 				</br>
 				</br>
 				</div>
