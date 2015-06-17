@@ -1,0 +1,35 @@
+package pdtb;
+
+import java.util.Vector;
+import pdtb.Connessioni;
+import pdtb.Connessione;
+
+public class main {
+
+	public static void main(String[] args) {
+		Connessioni prova = Connessioni.getInstance();
+		System.out.println("Aggiungo connessioni di prova...");
+		prova.aggiungiConnessione("prova1");
+		prova.aggiungiConnessione("prova2");
+		prova.aggiungiConnessione("prova3");
+		prova.aggiungiConnessione("prova4");
+		System.out.println("Connessioni aggiunte.");
+		System.out.println("Prova di rimozione della connessione...");
+		prova.rimuoviConnessione("prova2");
+		System.out.println("Connessione prova 2 rimossa");
+		System.out.println("Testo esistenza connessioni...");
+		boolean trovata1 = prova.esisteConnessione("prova2");
+		boolean trovata2 = prova.esisteConnessione("prova1");
+		boolean trovata4 = prova.esisteConnessione("prova4");
+		System.out.println("prova 2 trovata " + trovata1);
+		System.out.println("prova 1 trovata " + trovata2);
+		System.out.println("prova 4 trovata " + trovata4);
+		System.out.println("Connessioni salvate:");
+		Vector<Connessione> tutte = prova.getConAttive();
+		for(int i=0;i<tutte.size();i++) {
+			System.out.println("Connessione attiva "+ (i+1) + " " + tutte.elementAt(i).getNome());
+		}
+		System.out.println("test concluso.");
+	}
+
+}
