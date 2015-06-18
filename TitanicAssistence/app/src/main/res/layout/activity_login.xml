@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <include
         layout="@layout/toolbar"
@@ -13,12 +14,16 @@
         android:paddingTop="24dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
+
         <EditText
             android:id="@+id/usernameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="@string/usernameHint"/>
+            android:hint="@string/usernameHint"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/divider_color"
+            android:backgroundTint="@color/primary"/>
 
         <EditText
             android:id="@+id/passwordET"
@@ -26,7 +31,10 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:password="true"
-            android:hint="@string/passwordHint"/>
+            android:hint="@string/passwordHint"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/divider_color"
+            android:backgroundTint="@color/primary"/>
 
         <Button
             android:id="@+id/loginBT"

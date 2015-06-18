@@ -3,10 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 22
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "com.federicoparezzan.titanicassistence"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -16,6 +15,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    productFlavors {
     }
 }
 
@@ -28,6 +29,5 @@ dependencies {
     compile 'com.android.support:support-v4:22.1.1'
     compile 'com.android.support:support-v13:22.1.1'
     compile 'com.google.android.gms:play-services:7.3.0'
-
     compile 'com.github.clans:fab:1.5.0'
 }
