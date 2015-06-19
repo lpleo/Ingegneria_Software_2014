@@ -1,4 +1,4 @@
-<%@page import="pdtb.Connessioni"%>
+<%@page import="pdtb.connessioni.Connessioni"%>
  <html>
  <head>
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,6 +10,10 @@
 		<h1>Accesso...</h1> <br />
 	</div>
 	<%
+		/*
+		Richiamo il singletone per registrare le connessioni.
+		Registro la nuova connessione e reindirizzo la pagina alla prima pagina dell'applicazione.
+		*/
  		Connessioni conAttive = Connessioni.getInstance();
  		conAttive.aggiungiConnessione(request.getParameter("username"));
  		String site = "prima_schermata.jsp";

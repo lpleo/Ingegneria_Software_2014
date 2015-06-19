@@ -1,5 +1,5 @@
-<%@ page import="pdtb.Database" %>
-<%@ page import="pdtb.Connessioni" %>
+<%@ page import="pdtb.database.Database" %>
+<%@ page import="pdtb.connessioni.Connessioni" %>
 <%@page import="java.util.Vector"%> 
  <html>
  <head>
@@ -8,9 +8,13 @@
 	<title>Database Iceberg</title>
  </head>
  <body>
- <jsp:useBean id="connetti" scope="session" class="pdtb.Database" /> 
+ <jsp:useBean id="connetti" scope="session" class="pdtb.database.Database" /> 
  
  <%
+ 	/*
+ 	Salvo username e password in variabili, controllo se la connessione
+ 	esiste ed è attiva e mi connetto al database
+ 	*/
 	String username = (String) session.getAttribute("username");
 	String password = (String) session.getAttribute("password");
 	if(username == null || username.length() == 0) {
@@ -28,8 +32,15 @@
  	<input type="hidden" name="username" value=<%=username%> />
 	<input id="submit" type="submit" value="Disconnetti"/>
  </form>
+ <b>  Benvenuto utente "<%=username%>" </b>
  <div style="text-align:center">
 	<%
+	
+	/*
+	Controllo se il database è effettivamente connesso
+	altrimenti reindirizzo a pagina di errore
+	*/
+	
 	if(dbase.isConnesso()==false || esiste==false) {
 		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -182,6 +193,10 @@
 			
 		</div>
 		<%
+		
+	/*
+	Chiudo il collegamento con il database
+	*/
 	dbase.disconnetti();
 	}
 		%>

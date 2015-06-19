@@ -1,4 +1,4 @@
-<%@page import="pdtb.Connessioni"%>
+<%@page import="pdtb.connessioni.Connessioni"%>
  <html>
  <head>
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,6 +10,10 @@
 		<h1>Uscita...</h1> <br />
 	</div>
 	<%
+		/*
+		Richiedo le connessioni attive e rimuovo la connessione attuale,
+		reindirizzo la pagina alla schermata di login.
+		*/
  		Connessioni conAttive = Connessioni.getInstance();
  		conAttive.rimuoviConnessione(request.getParameter("username"));
  		String site = "index.html";

@@ -1,5 +1,5 @@
-<%@ page import="pdtb.Database" %>
-<%@ page import="pdtb.Connessioni" %>
+<%@ page import="pdtb.database.Database" %>
+<%@ page import="pdtb.connessioni.Connessioni" %>
 <%@page import="java.util.Vector"%> 
  <html>
  <head>
@@ -8,7 +8,11 @@
 	<title>Cancella utente</title>
  </head>
  <body> 
-<%
+<%	
+	/*
+	Testo l'esistenza della connessione e la connessione con il database,
+	se uno dei due rimanda esito negativo rimando ad una pagina di errore.
+	*/
 	Connessioni conAttive = Connessioni.getInstance();
 	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
@@ -20,6 +24,10 @@
    		response.setHeader("Location", site);
 	}
 	else {
+		/*
+		Testo la presenza del campo codice utente, se non è stato inserito mostro 
+		una pagina di errore.
+		*/
 		String codice = request.getParameter("cod_utente");
 		if(codice.length()==0) {
 %>
@@ -39,10 +47,15 @@
 		}
 		
 		else {
+			/*Creo le query*/
 			String query = "DELETE utenti FROM utenti WHERE id_utente = "+codice+";";
 			String esTest = "SELECT id_utente FROM utenti WHERE id_utente="+codice+";";
 			
 			try {
+				/*
+				Testo l'esecuzione della query, se l'utente è stato effettivamente eliminato
+				rimando ad una pagina di conferma, altrimenti rimando ad una pagina di errore.
+				*/
 				Vector vettore = dbase.eseguiQuery(esTest);
 				boolean successo = dbase.eseguiAggiornamento(query);
 				

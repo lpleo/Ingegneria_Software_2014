@@ -1,8 +1,8 @@
-<%@ page import="pdtb.Database" %>
+<%@ page import="pdtb.database.Database" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.GregorianCalendar" %>
 <%@page import="java.util.Vector"%> 
-<%@ page import="pdtb.Connessioni" %>
+<%@ page import="pdtb.connessioni.Connessioni" %>
 
  <html>
  <head>
@@ -12,31 +12,44 @@
  </head>
  <body> 
 <%
-	Connessioni conAttive = Connessioni.getInstance();
-	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
+	/*
+	Controllo l'esistenza della connessione e che l'utente sia abilitato ad eseguire operazioni
+	Creo la connessione al database e controllo che sia effettivamente connesso, altrimenti 
+	reindirizzo ad una pagina di errore.
+	*/
+	boolean esiste = Connessioni.getInstance().esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
 	dbase.connetti();
 	if(dbase.isConnesso()==false||esiste==false) {
 		dbase.disconnetti();
-		String site = "errore_collegamento.html";
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
-   		response.setHeader("Location", site);
+   		response.setHeader("Location", "errore_collegamento.html");
 	}
 	else {
+	
+		/*
+		Creo e inoltro la query per garantire il calcolo automatico dell'id del report,
+		la query per trovare l'id reale del problema data la tipologia (per consistenza con l'app android)
+		e calcolo automaticamente la data odierna per l'inserimento del report
+		*/
 		Vector vettore = dbase.eseguiQuery("SELECT MAX(id_report) FROM storico;");
 		Vector idProblema = dbase.eseguiQuery("SELECT id_problema FROM problemi WHERE tipologia='"+request.getParameter("cod_problema")+"';");
 		GregorianCalendar gc = new GregorianCalendar();
 		String data = "'"+gc.get(Calendar.YEAR)+"-"+gc.get(Calendar.MONTH)+"-"+gc.get(Calendar.DATE)+"',";
 		String[] record = (String[]) vettore.elementAt(0);
-		int numero = Integer.parseInt(record[0]);
-		numero = numero+1;
+		int numero = (Integer.parseInt(record[0]))+1;
 		String idProb="";
 		if(idProblema.size() > 0) {
 			record = (String[]) idProblema.elementAt(0);
 			idProb = record[0];
 		}
 		
-		String query = "INSERT INTO storico VALUES ("+ numero + ", " + idProb + " , " + request.getParameter("cod_utente") + " ," + data + " '" + request.getParameter("soluz") +"');";
+		/*
+		Creo la query per l'inserimento del report mediante i dati precedentemente calcolati,
+		e inoltro la query al database. Se la query ha successo rimando ad una pagina di conferma
+		dell'inserimento, altrimenti rimando ad una pagina di errore. 
+		*/
+		String query = "INSERT INTO storico VALUES ("+numero+","+idProb+","+request.getParameter("cod_utente")+","+data+"'"+request.getParameter("soluz")+"');";
 		boolean successo = dbase.eseguiAggiornamento(query);
 		if(successo) {
 %>

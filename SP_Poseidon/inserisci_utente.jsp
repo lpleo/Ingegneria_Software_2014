@@ -1,6 +1,6 @@
-<%@ page import="pdtb.Database" %>
+<%@ page import="pdtb.database.Database" %>
 <%@page import="java.util.Vector"%>
-<%@ page import="pdtb.Connessioni" %>
+<%@ page import="pdtb.connessioni.Connessioni" %>
  <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,6 +9,10 @@
  </head>
  <body> 
 <%
+	/*
+	Controllo che la connessione sia attiva e che il database sia effettivamente connesso,
+	altrimenti rimando ad una pagina di errore.
+	*/
 	Connessioni conAttive = Connessioni.getInstance();
 	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
@@ -20,6 +24,12 @@
    		response.setHeader("Location", site);
 	}
 	else {
+	
+		/*
+		Calcolo l'id della tupla per il nuovo inserimento,
+		controllo che tutti i campi siano stati effettivamente inseriti.
+		Se così non è mostro un messaggio di errore.
+		*/
 		Vector vettore = dbase.eseguiQuery("SELECT MAX(id_utente) FROM utenti;");
 		String[] record = (String[]) vettore.elementAt(0);
 		int numero = Integer.parseInt(record[0]);
@@ -48,7 +58,11 @@
 		}
 		
 		else {
-		
+			/*
+			Se tutti i campi sono stati inseriti, inoltro la query al database.
+			In caso di effettivo inserimento mostro una schermata riepilogativa,
+			altrimenti viene mostrato un messaggio di errore.
+			*/
 			String query = "INSERT INTO utenti (id_utente, nome, cognome, numerotel, indirizzo) VALUES ("+ numero + ",'" +nome+ "','" +cognome+ "','" +telefono+ "','" +indirizzo+ "');";
 			boolean successo = dbase.eseguiAggiornamento(query);
 			if(successo) {

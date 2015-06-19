@@ -1,6 +1,6 @@
-<%@ page import="pdtb.Database" %>
+<%@ page import="pdtb.database.Database" %>
 <%@page import="java.util.Vector"%>
-<%@ page import="pdtb.Connessioni" %>
+<%@ page import="pdtb.connessioni.Connessioni" %>
  <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,6 +9,10 @@
  </head>
  <body> 
 <%
+	/*
+	Controllo l'avvento collegamento al database e se la connessione è effettivamente attiva.
+	Se così non è viene mostrato un messaggio di errore.
+	*/
 	Connessioni conAttive = Connessioni.getInstance();
 	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
@@ -21,6 +25,12 @@
 	}
 	else {
 		try {
+			/*
+			Creo le query per la ricerca dell problema e dello storico associato a quel problema
+			(problemi di simile risoluzione con lo stesso codice).
+			Se il codice inserito dall'operatore è esatto viene visualizzato il problema desiderato
+			e lo storico associato, altrimenti viene mostrata una schermata di errore.
+			*/
 			String query = "select * from problemi p where p.tipologia ='"+request.getParameter("cod_problema")+"';";
 			String queryStorico = "select p.id_problema, p.tipologia, s.id_utenza, s.data_report, s.desc_report from problemi p, storico s where p.tipologia ='" + request.getParameter("cod_problema")+"' and s.id_problemi = p.id_problema;";
 			Vector vettore = dbase.eseguiQuery(query);

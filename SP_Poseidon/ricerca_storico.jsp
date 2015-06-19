@@ -1,6 +1,6 @@
-<%@ page import="pdtb.Database" %>
+<%@ page import="pdtb.database.Database" %>
 <%@page import="java.util.Vector"%>
-<%@ page import="pdtb.Connessioni" %>
+<%@ page import="pdtb.connessioni.Connessioni" %>
  <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,6 +9,10 @@
  </head>
  <body> 
 <%
+	/*
+	Controllo l'avvento collegamento al database e se la connessione è effettivamente attiva.
+	Se così non è viene mostrato un messaggio di errore.
+	*/
 	Connessioni conAttive = Connessioni.getInstance();
 	boolean esiste = conAttive.esisteConnessione(request.getParameter("username"));
 	Database dbase = new Database("iceberg",request.getParameter("username"),request.getParameter("password"));
@@ -21,6 +25,11 @@
 	}
 	else {
 		try {
+			/*
+			Seleziono l'utente inserito dall'operatore e lo storico associato all'utente se il codice
+			inserito esiste nel database, e ne mostro le informazioni e lo storico. In caso contrario
+			il sistema visualizza una schermata di errore. 
+			*/
 			String query = "select * from utenti u where u.id_utente ="+request.getParameter("cod_utente")+";";
 			Vector vettore = dbase.eseguiQuery(query);
 			Vector vettoreStorico = dbase.eseguiQuery("SELECT u.nome, p.tipo_problema, p.tipo_barca FROM utenti u, storico s, problemi p WHERE u.id_utente = s.id_utenza AND s.id_problemi = p.id_problema AND u.id_utente ="+request.getParameter("cod_utente")+";");
