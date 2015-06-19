@@ -1,10 +1,8 @@
-package com.federicoparezzan.titanicassistence.Util;
+package com.federicoparezzan.titanicassistence;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
-
-import com.federicoparezzan.titanicassistence.Util.Utils;
 
 import java.io.File;
 

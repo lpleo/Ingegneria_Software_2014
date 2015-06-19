@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.federicoparezzan.titanicassistence.R;
@@ -23,7 +22,7 @@ import com.github.clans.fab.FloatingActionButton;
 /**
  * Created by federicoparezzan on 14/06/15.
  */
-public class ProblemNotSolved extends AppCompatActivity {
+public class ProblemNotSolvedActivity extends AppCompatActivity {
 
     public static final String TAG = "SolutionActivity";
     private Context context;
@@ -66,7 +65,7 @@ public class ProblemNotSolved extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 history.removeAllNode();
-                Intent intent = new Intent(ProblemNotSolved.this.getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(ProblemNotSolvedActivity.this.getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -93,7 +92,8 @@ public class ProblemNotSolved extends AppCompatActivity {
             SharedPreferences sharedPreferences = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
             sharedPreferences.edit().remove(getString(R.string.logged)).commit();
 
-            Intent intent = new Intent(ProblemNotSolved.this.getApplicationContext(), LoginActivity.class);
+            Intent intent = new Intent(ProblemNotSolvedActivity.this.getApplicationContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
 

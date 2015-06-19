@@ -1,4 +1,4 @@
-package com.federicoparezzan.titanicassistence.Util;
+package com.federicoparezzan.titanicassistence;
 
 /**
  * Created by federicoparezzan on 29/05/15.

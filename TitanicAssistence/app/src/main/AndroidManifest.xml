@@ -19,7 +19,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name=".Util.MyAppSubclass"
+        android:name=".MyAppSubclass"
 
         >
         <activity
@@ -46,7 +46,7 @@
         <activity android:name=".Activity.SolutionActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".Activity.ProblemNotSolved"
+        <activity android:name=".Activity.ProblemNotSolvedActivity"
             android:screenOrientation="portrait"/>
 
     </application>

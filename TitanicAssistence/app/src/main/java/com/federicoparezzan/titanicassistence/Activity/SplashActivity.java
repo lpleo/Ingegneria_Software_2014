@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import com.federicoparezzan.titanicassistence.Database.DBManager;
 import com.federicoparezzan.titanicassistence.R;
 import com.federicoparezzan.titanicassistence.Tree.Tree;
-import com.federicoparezzan.titanicassistence.Util.Utils;
+import com.federicoparezzan.titanicassistence.Utils;
 
 /**
  * Created by federicoparezzan on 26/05/15.

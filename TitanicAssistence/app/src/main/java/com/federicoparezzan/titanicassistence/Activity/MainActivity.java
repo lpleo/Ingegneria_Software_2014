@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             sharedPreferences.edit().remove(getString(R.string.logged)).commit();
 
             Intent intent = new Intent(MainActivity.this.getApplicationContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
 

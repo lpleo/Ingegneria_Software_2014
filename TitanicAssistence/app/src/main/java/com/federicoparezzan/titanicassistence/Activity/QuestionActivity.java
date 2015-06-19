@@ -18,7 +18,6 @@ import com.federicoparezzan.titanicassistence.Memento.Originator;
 import com.federicoparezzan.titanicassistence.Tree.History;
 import com.federicoparezzan.titanicassistence.Tree.Node;
 import com.federicoparezzan.titanicassistence.R;
-import com.federicoparezzan.titanicassistence.Util.MyAppSubclass;
 import com.github.clans.fab.FloatingActionButton;
 
 /**
@@ -100,7 +99,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(QuestionActivity.this.getApplicationContext(), ProblemNotSolved.class);
+                Intent intent = new Intent(QuestionActivity.this.getApplicationContext(), ProblemNotSolvedActivity.class);
                 startActivity(intent);
 
             }
@@ -155,6 +154,7 @@ public class QuestionActivity extends AppCompatActivity {
             sharedPreferences.edit().remove(getString(R.string.logged)).commit();
 
             Intent intent = new Intent(QuestionActivity.this.getApplicationContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
 

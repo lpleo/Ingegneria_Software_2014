@@ -16,8 +16,8 @@ import android.widget.Toast;
 import com.federicoparezzan.titanicassistence.Bean.CredentialBean;
 import com.federicoparezzan.titanicassistence.Persistence.CredentialPersistence;
 import com.federicoparezzan.titanicassistence.R;
-import com.federicoparezzan.titanicassistence.Util.MyAppSubclass;
-import com.federicoparezzan.titanicassistence.Util.Utils;
+import com.federicoparezzan.titanicassistence.MyAppSubclass;
+import com.federicoparezzan.titanicassistence.Utils;
 
 /**
  * Created by federicoparezzan on 27/05/15.

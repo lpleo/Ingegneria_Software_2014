@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.federicoparezzan.titanicassistence.Bean.ProblemBean;
 import com.federicoparezzan.titanicassistence.Persistence.ProblemPersistence;
-import com.federicoparezzan.titanicassistence.Util.MyAppSubclass;
-import com.federicoparezzan.titanicassistence.Util.Utils;
+import com.federicoparezzan.titanicassistence.MyAppSubclass;
+import com.federicoparezzan.titanicassistence.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

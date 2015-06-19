@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.federicoparezzan.titanicassistence.Memento.Originator;
@@ -74,7 +73,7 @@ public class SolutionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(SolutionActivity.this.getApplicationContext(), ProblemNotSolved.class);
+                Intent intent = new Intent(SolutionActivity.this.getApplicationContext(), ProblemNotSolvedActivity.class);
                 startActivity(intent);
 
 
@@ -116,6 +115,7 @@ public class SolutionActivity extends AppCompatActivity {
             sharedPreferences.edit().remove(getString(R.string.logged)).commit();
 
             Intent intent = new Intent(SolutionActivity.this.getApplicationContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
 
