@@ -3,6 +3,7 @@
 <%@ page import="java.util.GregorianCalendar" %>
 <%@page import="java.util.Vector"%> 
 <%@ page import="pdtb.connessioni.Connessioni" %>
+<%@ page import="pdtb.controlli.Parser" %>
 
  <html>
  <head>
@@ -35,7 +36,7 @@
 		Vector vettore = dbase.eseguiQuery("SELECT MAX(id_report) FROM storico;");
 		Vector idProblema = dbase.eseguiQuery("SELECT id_problema FROM problemi WHERE tipologia='"+request.getParameter("cod_problema")+"';");
 		GregorianCalendar gc = new GregorianCalendar();
-		String data = "'"+gc.get(Calendar.YEAR)+"-"+gc.get(Calendar.MONTH)+"-"+gc.get(Calendar.DATE)+"',";
+		String data = "'"+gc.get(Calendar.YEAR)+"-"+gc.get(Calendar.MONTH)+"-"+gc.get(Calendar.DATE)+"'";
 		String[] record = (String[]) vettore.elementAt(0);
 		int numero = (Integer.parseInt(record[0]))+1;
 		String idProb="";
@@ -43,13 +44,20 @@
 			record = (String[]) idProblema.elementAt(0);
 			idProb = record[0];
 		}
-		
+
+		/*
+		Controllo se la soluzione inserita contiene apostrofi(incasinano la query e dava errore).
+		Se c'erano apostrofi, vengono sostituiti con lo spazio e la soluzione viene inserita
+		*/
+		String soluzione = request.getParameter("soluz");
+		Parser parser = new Parser(soluzione);
+		soluzione = parser.modificaStringa();
 		/*
 		Creo la query per l'inserimento del report mediante i dati precedentemente calcolati,
 		e inoltro la query al database. Se la query ha successo rimando ad una pagina di conferma
 		dell'inserimento, altrimenti rimando ad una pagina di errore. 
 		*/
-		String query = "INSERT INTO storico VALUES ("+numero+","+idProb+","+request.getParameter("cod_utente")+","+data+"'"+request.getParameter("soluz")+"');";
+		String query = "INSERT INTO storico VALUES ("+numero+","+idProb+","+request.getParameter("cod_utente")+","+data+",'"+soluzione+"');";
 		boolean successo = dbase.eseguiAggiornamento(query);
 		if(successo) {
 %>
@@ -74,6 +82,7 @@
 		<div id="div_log">
 			<h3> Errore nell'inserimento dello storico </h3>
 			<h4> Controllare l'esattezza dei campi di inserimento </h4>
+			<%=query%>
 		</div>
 		
 		<div id="div_log">
